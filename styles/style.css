@@ -11,11 +11,13 @@
     height: 110px;
     width: 100%;
     position: relative;
+
 }
 .date__container{
     position: absolute;
     top: 0;
-    left: -115px;
+    left: -230px;
+    transition: 2.5s ease-in-out;
 }
 .date__wrapper{
     position: relative;
