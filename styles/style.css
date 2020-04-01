@@ -15,15 +15,34 @@
 .date__container{
     position: absolute;
     top: 0;
-    left: 0;
+    left: -115px;
 }
 .date__wrapper{
     position: relative;
     width: auto;
-    background: red;
     height: 100%;
     display: flex;
 }
+.week_day{
+    margin: 0 24.3px;
+    text-align: center;
+}
+
+.week_day p{
+    font-size: 34px;
+    margin: 0;
+}
+.week_day .day{
+    font-size: 23px;
+}
+.month_wrapper{
+    border: 2pt solid lightblue;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
 @media (min-width: 450px) {
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
@@ -40,8 +59,8 @@
         max-width: 375px;
         height: 755px;
         border-radius: 40pt;
-        border: 14.5px solid black;
-        box-shadow: 0 0 0 1.5px rgba(247, 202, 24, .9);
+        border: 13.5px solid black;
+        box-shadow: 0 0 0 1.6px rgba(247, 202, 24, .9);
     }
 
     .mobile__forelock {
