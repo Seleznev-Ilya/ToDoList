@@ -7,7 +7,23 @@
     overflow: hidden;
     padding-top: 30px;
 }
-
+.date{
+    height: 110px;
+    width: 100%;
+    position: relative;
+}
+.date__container{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.date__wrapper{
+    position: relative;
+    width: auto;
+    background: red;
+    height: 100%;
+    display: flex;
+}
 @media (min-width: 450px) {
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
