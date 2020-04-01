@@ -1,0 +1,117 @@
+@import "main.css";
+
+.container {
+    width: auto;
+    height: 100%;
+    border-radius: 30pt;
+    overflow: hidden;
+    padding-top: 30px;
+}
+
+@media (min-width: 450px) {
+    .todo {
+        box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
+        max-width: 375px;
+        margin: 10px auto;
+        border-radius: 40pt;
+    }
+
+    .mobile {
+        position: relative;
+        box-sizing: border-box;
+        background-color: white;
+        width: 100%;
+        max-width: 375px;
+        height: 755px;
+        border-radius: 40pt;
+        border: 14.5px solid black;
+        box-shadow: 0 0 0 1.5px rgba(247, 202, 24, .9);
+    }
+
+    .mobile__forelock {
+        box-sizing: border-box;
+        position: absolute;
+        top: -2px;
+        left: calc(50% - (202px / 2));
+        background-color: black;
+        height: 31px;
+        width: 202px;
+        border-bottom-left-radius: 20pt;
+        border-bottom-right-radius: 20pt;
+        z-index: 100;
+    }
+
+    .mobile__forelock:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -13px;
+        background: transparent;
+        height: 6px;
+        width: 13px;
+        border-right: 4px solid black;
+        border-top: 6px solid black;
+        border-top-right-radius: 10px;
+    }
+
+    .mobile__forelock:after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        right: -13px;
+        background: transparent;
+        height: 6px;
+        width: 13px;
+        border-left: 4px solid black;
+        border-top: 6px solid black;
+        border-top-left-radius: 10px;
+    }
+
+    .mobile__volume {
+        position: absolute;
+        left: -17px;
+        top: 100px;
+        background-color: black;
+        height: 35px;
+        width: 5px;
+        border-radius: 5px;
+    }
+
+    .mobile__volume_up {
+        position: absolute;
+        left: -17px;
+        top: 170px;
+        background-color: black;
+        height: 70px;
+        width: 5px;
+        border-radius: 5px;
+    }
+
+    .mobile__volume_down {
+        position: absolute;
+        left: -17px;
+        top: 250px;
+        background-color: black;
+        height: 70px;
+        width: 5px;
+        border-radius: 5px;
+    }
+
+    .mobile__lock {
+        position: absolute;
+        right: -17px;
+        top: 180px;
+        background-color: black;
+        height: 110px;
+        width: 5px;
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 449px) {
+    .container {
+        border-radius: 0;
+    }
+
+}
+
