@@ -22,6 +22,12 @@ function drawDate() {
         } else {
             containerDate.style.left = (document.documentElement.clientWidth / 3) + 'px';
         }
+    } else if(document.documentElement.clientWidth > 414) {
+        if (date.getDay() !== 0) {
+            containerDate.style.left = (-date.getDay() + 2) * (348 / 3) + 'px';
+        } else {
+            containerDate.style.left = 348 + 'px';
+        }
     }
     for (let i = 0; i < week.length; i++) {
         function oneDay() {
@@ -29,6 +35,8 @@ function drawDate() {
             dayItem.classList.add('week_day');
             if(document.documentElement.clientWidth <= 414){
                 dayItem.style.width = document.documentElement.clientWidth / 3 + 'px';
+            }else if(document.documentElement.clientWidth > 414) {
+                dayItem.style.width = (348 / 3) + 'px';
             }
 
             let day = document.createElement('p');
