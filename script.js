@@ -55,7 +55,7 @@ function drawDate() {
 }
 
 drawDate();
-if (document.documentElement.clientWidth <= 414) {
+// if (document.documentElement.clientWidth <= 414) {
     let resize = function (e) {
         console.log(e);
         location.reload();
@@ -71,4 +71,4 @@ if (document.documentElement.clientWidth <= 414) {
             }, 100);
         }
     })();
-}
+// }
