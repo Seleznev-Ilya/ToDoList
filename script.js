@@ -16,15 +16,20 @@ if (date.getDay() !== 0) {
 function drawDate() {
     let today = new Date();
     let k = 1;
-    if (date.getDay() !== 0) {
-        containerDate.style.left = (-date.getDay() + 2) * 115 + 'px';
-    } else {
-        containerDate.style.left = 115 + 'px';
+    if(document.documentElement.clientWidth <= 414) {
+        if (date.getDay() !== 0) {
+            containerDate.style.left = (-date.getDay() + 2) * (document.documentElement.clientWidth / 3) + 'px';
+        } else {
+            containerDate.style.left = (document.documentElement.clientWidth / 3) + 'px';
+        }
     }
     for (let i = 0; i < week.length; i++) {
         function oneDay() {
             let dayItem = document.createElement('div');
             dayItem.classList.add('week_day');
+            if(document.documentElement.clientWidth <= 414){
+                dayItem.style.width = document.documentElement.clientWidth / 3 + 'px';
+            }
 
             let day = document.createElement('p');
             day.classList.add('day');
@@ -44,10 +49,7 @@ function drawDate() {
 
         oneDay()
     }
-
-
-
 }
 
 drawDate();
-console.log(date);
+console.log(document.documentElement.clientWidth / 3);

@@ -7,45 +7,52 @@
     overflow: hidden;
     padding-top: 30px;
 }
-.date{
+
+.date {
     height: 110px;
     width: 100%;
     position: relative;
 
 }
-.date__container{
+
+.date__container {
     position: absolute;
     top: 0;
-    left: -230px;
-    transition: 2.5s ease-in-out;
+    left: 0;
+    transition: 1s ease-in-out;
 }
-.date__wrapper{
+
+.date__wrapper {
     position: relative;
     width: auto;
     height: 100%;
     display: flex;
 }
-.week_day{
-    margin: 0 24.3px;
+
+.week_day {
     text-align: center;
 }
 
-.week_day p{
+
+.week_day p {
     font-size: 34px;
     margin: 0;
 }
-.week_day .day{
+
+.week_day .day {
     font-size: 23px;
 }
-.month_wrapper{
+
+.month_wrapper {
     border: 2pt solid lightblue;
-    width: 40px;
-    height: 40px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     padding: 10px;
+    margin: 0 auto;
 }
 
-@media (min-width: 450px) {
+@media (min-width: 415px) {
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
         max-width: 375px;
@@ -145,10 +152,9 @@
     }
 }
 
-@media (max-width: 449px) {
+@media (max-width: 414px) {
     .container {
         border-radius: 0;
     }
-
 }
 
