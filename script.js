@@ -2,7 +2,7 @@ let today = new Date();
 const wrapperDate = document.querySelector('.date__wrapper');
 const containerDate = document.querySelector('.date__container');
 const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-drawDate();
+
 let resize = function (e) {
     console.log(e);
     location.reload();
@@ -44,11 +44,13 @@ function oneDay() {
         wrapperDate.append(dayItem);
     }
 }
+
 function highlightDay() {
     let thisDayWrapper = document.querySelector(".date__wrapper");
     thisDayWrapper.children[today.getDay() - 1].children[1].style.fontWeight = 'bold';
-    thisDayWrapper.children[today.getDay() - 1].style.color = 'red';
+    thisDayWrapper.children[today.getDay() - 1].style.color = 'Tomato';
 }
+
 function drawDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
@@ -63,8 +65,8 @@ function drawDate() {
             containerDate.style.left = 348 + 'px';
         }
     }
-    oneDay();
-    highlightDay()
 }
 
-
+drawDate();
+oneDay();
+highlightDay();

@@ -44,7 +44,7 @@
 }
 
 .month_wrapper {
-    border: 1.5pt solid lightblue;
+    border: 1.5pt solid rgba(3, 201, 169, 1);
     width: 65px;
     height: 65px;
     border-radius: 50%;
