@@ -10,7 +10,7 @@
 }
 
 .date {
-    height:91px;
+    height:100px;
     width: 100%;
     position: relative;
 }
@@ -55,17 +55,17 @@
 }
 .date_left_today, .date_right_today{
     position: absolute;
-    top: calc( 50% - 50px / 4 );
+    top: calc( 50% - 35px / 2 );
 }
 .date_left_today{
-    left: 14%;
+    left: 13%;
 }
 .date_right_today{
-    right: 14%;
+    right: 13%;
 }
 .date_today{
     border-radius: 50%;
-    box-shadow: 0 0 25px 4px rgba(3, 201, 169, 1) ;
+    box-shadow: 0 0 20px 4px rgba(3, 201, 169, 1) ;
 }
 @media (min-width: 415px) {
     .todo {
