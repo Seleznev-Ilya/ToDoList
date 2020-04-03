@@ -10,7 +10,7 @@
 }
 
 .date {
-    height:100px;
+    height:110px;
     width: 100%;
     position: relative;
 }
@@ -19,9 +19,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    height:110px;
     transition: .5s linear;
     background: rgb(255,255,255);
-    box-shadow: -18px 0 120px 0 rgba(255,255,255, 1),18px 0 120px 0 rgba(255,255,255, 1);
+    box-shadow: -15px 0 100px 0 rgba(255,255,255, 1),15px 0 100px 0 rgba(255,255,255, 1);
 }
 
 .date__wrapper {
@@ -29,6 +30,8 @@
     width: auto;
     height: 100%;
     display: flex;
+    background: rgb(255,255,255);
+    box-shadow: -18px 0 120px 0 rgba(255,255,255, 1),18px 0 120px 0 rgba(255,255,255, 1);
 }
 
 .week_day {
@@ -55,7 +58,7 @@
 }
 .date_left_today, .date_right_today{
     position: absolute;
-    top: calc( 50% - 35px / 2 );
+    top: calc( 50% - 45px / 2 );
 }
 .date_left_today{
     left: 13%;
