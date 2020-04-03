@@ -21,7 +21,7 @@
     left: 0;
     transition: .5s linear;
     background: rgb(255,255,255);
-    box-shadow: -22px 0 120px 0 rgba(255,255,255, 1),22px 0 120px 0 rgba(255,255,255, 1);
+    box-shadow: -18px 0 120px 0 rgba(255,255,255, 1),18px 0 120px 0 rgba(255,255,255, 1);
 }
 
 .date__wrapper {
