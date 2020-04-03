@@ -17,12 +17,15 @@ let resize = function (e) {
         }, 100);
     }
 })();
-
-function oneDay() {
+moveRelevantDate();
+drawDates();
+highlightDay();
+function drawDates() {
     let k = 1;
     for (let i = 0; i < week.length; i++) {
         let dayItem = document.createElement('div');
         dayItem.classList.add('week_day');
+        dayItem.classList.add(`week_day${i}`);
         if (document.documentElement.clientWidth <= 414) {
             dayItem.style.width = document.documentElement.clientWidth / 3 + 'px';
         } else if (document.documentElement.clientWidth > 414) {
@@ -51,7 +54,7 @@ function highlightDay() {
     thisDayWrapper.children[today.getDay() - 1].style.color = 'Tomato';
 }
 
-function drawDate() {
+function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
             containerDate.style.left = (-today.getDay() + 2) * (document.documentElement.clientWidth / 3) + 'px';
@@ -66,7 +69,19 @@ function drawDate() {
         }
     }
 }
+wrapperDate.addEventListener('click', function( event){
+    let otherDay = event.target;
+    for (let i = 0; i < week.length; i++){
+        if(otherDay.closest(`.week_day${i}`)){
+            let targetContainer = document.getElementsByClassName(`week_day${i}`)[0].parentNode.parentNode;
+            if (document.documentElement.clientWidth <= 414) {
+                targetContainer.style.left = -(document.documentElement.clientWidth / 3) *( i - 1) + 'px';
+            } else {
+                targetContainer.style.left = -(348 / 3) *( i - 1) + 'px';
+            }
+            console.log(i *  (348 / 3))
+        }
+    }
+});
 
-drawDate();
-oneDay();
-highlightDay();
+
