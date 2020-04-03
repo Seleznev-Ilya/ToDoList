@@ -6,7 +6,7 @@
     border-radius: 30pt;
     overflow: hidden;
     padding-top: 30px;
-    /*background: white;*/
+    /*background: black;*/
 }
 
 .date {
@@ -20,7 +20,8 @@
     top: 0;
     left: 0;
     transition: .5s linear;
-    /*background: grey;*/
+    background: rgb(255,255,255);
+    box-shadow: -22px 0 120px 0 rgba(255,255,255, 1),22px 0 120px 0 rgba(255,255,255, 1);
 }
 
 .date__wrapper {
@@ -52,7 +53,16 @@
     padding: 10px;
     margin: 0 auto;
 }
-
+.date_left_today, .date_right_today{
+    position: absolute;
+    top: calc( 50% - 50px / 4 );
+}
+.date_left_today{
+    left: 14%;
+}
+.date_right_today{
+    right: 14%;
+}
 @media (min-width: 415px) {
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);

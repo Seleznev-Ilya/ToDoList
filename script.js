@@ -20,6 +20,7 @@ let resize = function (e) {
 moveRelevantDate();
 drawDates();
 highlightDay();
+
 function drawDates() {
     let k = 1;
     for (let i = 0; i < week.length; i++) {
@@ -69,17 +70,18 @@ function moveRelevantDate() {
         }
     }
 }
-wrapperDate.addEventListener('click', function( event){
+
+wrapperDate.addEventListener('click', function (event) {
     let otherDay = event.target;
-    for (let i = 0; i < week.length; i++){
-        if(otherDay.closest(`.week_day${i}`)){
+    for (let i = 0; i < week.length; i++) {
+        if (otherDay.closest(`.week_day${i}`)) {
             let targetContainer = document.getElementsByClassName(`week_day${i}`)[0].parentNode.parentNode;
             if (document.documentElement.clientWidth <= 414) {
-                targetContainer.style.left = -(document.documentElement.clientWidth / 3) *( i - 1) + 'px';
+                targetContainer.style.left = -(document.documentElement.clientWidth / 3) * (i - 1) + 'px';
             } else {
-                targetContainer.style.left = -(348 / 3) *( i - 1) + 'px';
+                targetContainer.style.left = -(348 / 3) * (i - 1) + 'px';
             }
-            console.log(i *  (348 / 3))
+            console.log(i * (348 / 3))
         }
     }
 });
