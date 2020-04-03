@@ -6,7 +6,6 @@
     border-radius: 30pt;
     overflow: hidden;
     padding-top: 30px;
-    /*background: black;*/
 }
 
 .date {
@@ -69,6 +68,14 @@
 .date_today{
     border-radius: 50%;
     box-shadow: 0 0 20px 4px rgba(3, 201, 169, 1) ;
+}
+.toDoit{
+    position: absolute;
+    top: -49px;
+    left: calc(50% - 76px / 2);
+    font-weight: bold;
+    color: rgba(3, 201, 169, 1);
+
 }
 @media (min-width: 415px) {
     .todo {
