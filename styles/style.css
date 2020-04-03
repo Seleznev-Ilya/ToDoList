@@ -72,7 +72,7 @@
 .toDoit{
     position: absolute;
     top: -49px;
-    left: calc(50% - 76px / 2);
+    left: calc(50% - 58px / 2);
     font-weight: bold;
     color: rgba(3, 201, 169, 1);
 
