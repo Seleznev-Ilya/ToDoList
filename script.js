@@ -2,6 +2,9 @@ let today = new Date();
 const wrapperDate = document.querySelector('.date__wrapper');
 const containerDate = document.querySelector('.date__container');
 const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+let buttonTodayL = document.querySelector('.date_left_today');
+let buttonTodayR = document.querySelector('.date_right_today');
+
 
 let resize = function (e) {
     console.log(e);
@@ -86,4 +89,5 @@ wrapperDate.addEventListener('click', function (event) {
     }
 });
 
-
+buttonTodayL.addEventListener('click', moveRelevantDate);
+buttonTodayR.addEventListener('click', moveRelevantDate);
