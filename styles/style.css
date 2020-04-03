@@ -71,8 +71,9 @@
 }
 .toDoit{
     position: absolute;
-    top: -49px;
+    top: -47px;
     left: calc(50% - 60px / 2);
+
 }
 .toDoitp{
     width: 60px;
