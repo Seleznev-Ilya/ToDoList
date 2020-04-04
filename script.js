@@ -1,11 +1,9 @@
 let today = new Date();
+const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const wrapperDate = document.querySelector('.date__wrapper');
 const containerDate = document.querySelector('.date__container');
-const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 let buttonTodayL = document.querySelector('.date_left_today');
 let buttonTodayR = document.querySelector('.date_right_today');
-
-
 let resize = function (e) {
     console.log(e);
     location.reload();
@@ -20,9 +18,16 @@ let resize = function (e) {
         }, 100);
     }
 })();
-moveRelevantDate();
-drawDates();
-highlightDay();
+
+let timer = setTimeout(function step() {
+    upDate();
+    timer = setTimeout(step, 30000);
+}, 30000);
+function upDate(){
+    if (today.getHours() === 23 && today.getMinutes() === 59 ){
+        setTimeout(location.reload(), 10000);
+    }
+}
 
 function drawDates() {
     let k = 1;
@@ -44,7 +49,11 @@ function drawDates() {
         monthWrapper.classList.add('month_wrapper');
         let month = document.createElement('p');
         month.classList.add('month');
-        month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
+        if (today.getDay() !== 0){
+            month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
+        } else{
+            month.innerText = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
+        }
         dayItem.append(day);
         monthWrapper.append(month);
         dayItem.append(monthWrapper);
@@ -52,29 +61,40 @@ function drawDates() {
     }
 }
 
+
 function highlightDay() {
     let thisDayWrapper = document.querySelector(".date__wrapper");
-    thisDayWrapper.children[today.getDay() - 1].children[1].style.fontWeight = 'bold';
-    thisDayWrapper.children[today.getDay() - 1].style.color = 'Tomato';
+    if (today.getDay() !== 0) {
+        thisDayWrapper.children[today.getDay() - 1].children[1].style.fontWeight = 'bold';
+        thisDayWrapper.children[today.getDay() - 1].style.color = 'Tomato';
+    } else {
+        thisDayWrapper.children[6].children[1].style.fontWeight = 'bold';
+        thisDayWrapper.children[6].style.color = 'Tomato';
+    }
 }
+
+
 
 function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
             containerDate.style.left = (-today.getDay() + 2) * (document.documentElement.clientWidth / 3) + 'px';
         } else {
-            containerDate.style.left = (document.documentElement.clientWidth / 3) + 'px';
+            containerDate.style.left = (-document.documentElement.clientWidth / 3) * 5  + 'px';
         }
     } else if (document.documentElement.clientWidth > 414) {
         if (today.getDay() !== 0) {
             containerDate.style.left = (-today.getDay() + 2) * (348 / 3) + 'px';
-        } else {
-            containerDate.style.left = 348 + 'px';
+        } else  {
+            containerDate.style.left = (-348 / 3) *5  + 'px';
         }
     }
 }
+drawDates();
+highlightDay();
+moveRelevantDate();
 
-wrapperDate.addEventListener('click', function (event) {
+wrapperDate.addEventListener('click',  (event) =>{
     let otherDay = event.target;
     for (let i = 0; i < week.length; i++) {
         if (otherDay.closest(`.week_day${i}`)) {
@@ -84,10 +104,8 @@ wrapperDate.addEventListener('click', function (event) {
             } else {
                 targetContainer.style.left = -(348 / 3) * (i - 1) + 'px';
             }
-            console.log(i * (348 / 3))
         }
     }
 });
-
 buttonTodayL.addEventListener('click', moveRelevantDate);
 buttonTodayR.addEventListener('click', moveRelevantDate);

@@ -9,7 +9,7 @@
 }
 
 .date {
-    height:110px;
+    height: 110px;
     width: 100%;
     position: relative;
 }
@@ -18,10 +18,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    height:110px;
+    height: 110px;
     transition: .5s linear;
-    background: rgb(255,255,255);
-    box-shadow: -5px 0 33px 10px rgba(255,255,255, 1),5px 0 33px 10px rgba(255,255,255, 1);
+    background: rgb(255, 255, 255);
+    box-shadow: -5px 0 33px 10px rgba(255, 255, 255, 1), 5px 0 33px 10px rgba(255, 255, 255, 1);
 }
 
 .date__wrapper {
@@ -29,14 +29,13 @@
     width: auto;
     height: 100%;
     display: flex;
-    background: rgb(255,255,255);
-    box-shadow: -3px 0 5px 7px rgba(255,255,255, 1),3px 0 5px 7px rgba(255,255,255, 1);
+    background: rgb(255, 255, 255);
+    box-shadow: -3px 0 5px 7px rgba(255, 255, 255, 1), 3px 0 5px 7px rgba(255, 255, 255, 1);
 }
 
 .week_day {
     text-align: center;
 }
-
 
 .week_day p {
     font-size: 34px;
@@ -55,33 +54,38 @@
     padding: 10px;
     margin: 0 auto;
 }
-.date_left_today, .date_right_today{
+
+.date_left_today, .date_right_today {
     position: absolute;
-    top: calc( 50% - 45px / 2 );
+    top: calc(50% - 45px / 2);
 }
-.date_left_today{
+
+.date_left_today {
     left: 13%;
 }
-.date_right_today{
+
+.date_right_today {
     right: 13%;
 }
-.date_today{
+
+.date_today {
     border-radius: 50%;
-    box-shadow: 0 0 20px 4px rgba(3, 201, 169, 1) ;
+    box-shadow: 0 0 20px 4px rgba(3, 201, 169, 1);
 }
-.toDoit{
+
+.toDoit {
     position: absolute;
     top: -47px;
     left: calc(50% - 60px / 2);
-
 }
-.toDoitp{
+
+.toDoitp {
     width: 60px;
-    text-align: center ;
+    text-align: center;
     font-weight: bold;
     color: rgba(3, 201, 169, 1);
-
 }
+
 @media (min-width: 415px) {
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
