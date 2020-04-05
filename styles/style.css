@@ -2,15 +2,17 @@
 
 .container {
     width: auto;
-    height: 100%;
-    border-radius: 30pt;
+    height: 99.9%;
+    border-top-right-radius: 30pt;
+    border-top-left-radius: 30pt;
     overflow: hidden;
     padding-top: 30px;
+    background: white;
 }
 
 .date {
     height: 110px;
-    width: 100%;
+    width: 99.9%;
     position: relative;
 }
 
@@ -21,7 +23,7 @@
     height: 110px;
     transition: .5s linear;
     background: rgb(255, 255, 255);
-    box-shadow: -5px 0 33px 10px rgba(255, 255, 255, 1), 5px 0 33px 10px rgba(255, 255, 255, 1);
+    box-shadow: -3px 0 3px 0 rgba(255, 255, 255, 1), 3px 0 3px 0 rgba(255, 255, 255, 1);
 }
 
 .date__wrapper {
@@ -30,7 +32,7 @@
     height: 100%;
     display: flex;
     background: rgb(255, 255, 255);
-    box-shadow: -3px 0 5px 7px rgba(255, 255, 255, 1), 3px 0 5px 7px rgba(255, 255, 255, 1);
+    box-shadow: -3px 0 15px rgba(255, 255, 255, 1), 3px 0 15px rgba(255, 255, 255, 1);
 }
 
 .week_day {
@@ -87,8 +89,37 @@
     color: rgba(3, 201, 169, 1);
 
 }
+.header__wrapper{
+    position: fixed;
+    width: 100%;
 
+}
+main{
+    overflow: hidden;
+    height: 100%;
+}
 @media (min-width: 415px) {
+    .date__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 110px;
+        transition: .5s linear;
+        background: rgb(255, 255, 255);
+        box-shadow: -5px 0 33px 10px rgba(255, 255, 255, 1), 5px 0 33px 10px rgba(255, 255, 255, 1);
+    }
+
+    .date__wrapper {
+        position: relative;
+        width: auto;
+        height: 100%;
+        display: flex;
+        background: rgb(255, 255, 255);
+        box-shadow: -3px 0 5px 7px rgba(255, 255, 255, 1), 3px 0 5px 7px rgba(255, 255, 255, 1);
+    }
+    .header__wrapper{
+        width: 348px;
+    }
     .todo {
         box-shadow: 0 33px 70px 20px rgba(0, 0, 0, 0.45);
         max-width: 375px;

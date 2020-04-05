@@ -3,7 +3,9 @@
         background-color: rgba(149, 149, 145, 0.65);
     }
 }
-
+body{
+    position: relative;
+}
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
