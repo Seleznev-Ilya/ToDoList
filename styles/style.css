@@ -34,7 +34,9 @@
     top: 0;
     left: 0;
     height: 110px;
-    transition: .5s linear;
+    transition: .9s;
+    /*transition-timing-function: ease-in;*/
+    transition-timing-function: cubic-bezier(3.6, 2.5, 1.2, -1);
     background: rgb(255, 255, 255);
     box-shadow: -3px 0 3px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
 }
@@ -107,8 +109,6 @@ header{
     top: 0;
 }
 .header__wrapper{
-    /*position: fixed;*/
-    top: 0;
     width: 100%;
 
 }
@@ -128,7 +128,6 @@ header{
         top: 0;
         left: 0;
         height: 110px;
-        transition: .5s linear;
         background: rgb(255, 255, 255);
         box-shadow: -3px 0 22px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
     }
@@ -246,7 +245,7 @@ header{
 @media (max-width: 414px) {
     main{
         overflow: hidden;
-        height: calc(100vh - 140px);
+        height: calc(100vh - 170px);
     }
     .container {
         border-radius: 0;
