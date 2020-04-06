@@ -10,8 +10,9 @@
     background: white;
 }
 .main__list {
+    box-shadow: inset 3px 10px 20px -14px rgba(3, 201, 169, .5);
     /*border-top: 3px solid lightsalmon;*/
-    border-top: 3px groove  rgba(3, 201, 169, .7);
+    border-top: 3.5px groove  rgba(3, 201, 169, .7);
     /*border-left: 1px solid orange;*/
     width: auto;
     height: 100%;
@@ -64,9 +65,9 @@
 }
 
 .month_wrapper {
-    border: 1.5pt ridge   rgba(3, 201, 169, 1);
-    width: 65px;
-    height: 65px;
+    border: 2pt solid rgba(3, 201, 169, 1);
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
     padding: 10px;
     margin: 0 auto;
