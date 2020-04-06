@@ -10,10 +10,8 @@
     background: white;
 }
 .main__list {
-    box-shadow: inset 3px 10px 20px -14px rgba(3, 201, 169, .5);
-    /*border-top: 3px solid lightsalmon;*/
-    border-top: 3.5px groove  rgba(3, 201, 169, .7);
-    /*border-left: 1px solid orange;*/
+    box-shadow: inset 2px 11px 17px -14px rgba(3, 201, 169, 0.4);
+    border-top: 3.5px groove rgba(3, 201, 169, .9);
     width: auto;
     height: 100%;
     overflow: hidden;
