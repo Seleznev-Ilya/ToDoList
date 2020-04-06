@@ -4,7 +4,6 @@
     <list default="true" id="5266a3b7-6fd2-4c11-8e68-6050e56a2907" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +73,7 @@
       <updated>1585679358643</updated>
       <workItem from="1585679362075" duration="78757000" />
       <workItem from="1586032064777" duration="6322000" />
-      <workItem from="1586070011476" duration="5704000" />
+      <workItem from="1586070011476" duration="11719000" />
     </task>
     <servers />
   </component>
@@ -86,10 +85,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="578" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1586073439966" />
-    <state x="425" y="197" key="run.anything.popup" timestamp="1585699018592">
+    <state x="425" y="198" key="run.anything.popup" timestamp="1586175144530">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="425" y="197" key="run.anything.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1585699018592" />
+    <state x="425" y="198" key="run.anything.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1586175144530" />
     <state x="431" y="181" key="search.everywhere.popup" timestamp="1585701026648">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

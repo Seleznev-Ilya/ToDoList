@@ -1,6 +1,6 @@
 @import "main.css";
 
-.container {
+.container__header {
     width: auto;
     height: 99.9%;
     border-top-right-radius: 30pt;
@@ -8,6 +8,19 @@
     overflow: hidden;
     padding-top: 30px;
     background: white;
+}
+.main__list {
+    border-top: 3px solid lightsalmon;
+    /*border-top: 3px solid rgba(3, 201, 169, 1);*/
+    /*border-left: 1px solid orange;*/
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    background: white;
+    border-bottom-right-radius: 30pt;
+    border-bottom-left-radius: 30pt;
+    border-top-left-radius: 77px;
+    position: relative;
 }
 
 .date {
@@ -23,7 +36,7 @@
     height: 110px;
     transition: .5s linear;
     background: rgb(255, 255, 255);
-    box-shadow: -3px 0 3px 0 rgba(255, 255, 255, 1), 3px 0 3px 0 rgba(255, 255, 255, 1);
+    box-shadow: -3px 0 3px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
 }
 
 .date__wrapper {
@@ -32,7 +45,7 @@
     height: 100%;
     display: flex;
     background: rgb(255, 255, 255);
-    box-shadow: -3px 0 15px rgba(255, 255, 255, 1), 3px 0 15px rgba(255, 255, 255, 1);
+    box-shadow: -3px 0 22px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
 }
 
 .week_day {
@@ -89,16 +102,27 @@
     color: rgba(3, 201, 169, 1);
 
 }
+header{
+    position: static;
+    top: 0;
+}
 .header__wrapper{
-    position: fixed;
+    /*position: fixed;*/
+    top: 0;
     width: 100%;
 
 }
-main{
-    overflow: hidden;
+.list{
+    border: 2px solid rgba(191, 191, 191, .7);
+    border-top-radius: 30pt;
     height: 100%;
+    width: auto;
 }
 @media (min-width: 415px) {
+    main{
+        overflow: hidden;
+        height: calc(100% - 140px);
+    }
     .date__container {
         position: absolute;
         top: 0;
@@ -106,7 +130,7 @@ main{
         height: 110px;
         transition: .5s linear;
         background: rgb(255, 255, 255);
-        box-shadow: -5px 0 33px 10px rgba(255, 255, 255, 1), 5px 0 33px 10px rgba(255, 255, 255, 1);
+        box-shadow: -3px 0 22px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
     }
 
     .date__wrapper {
@@ -115,7 +139,7 @@ main{
         height: 100%;
         display: flex;
         background: rgb(255, 255, 255);
-        box-shadow: -3px 0 5px 7px rgba(255, 255, 255, 1), 3px 0 5px 7px rgba(255, 255, 255, 1);
+        box-shadow: -3px 0 22px -2px rgba(255, 255, 255, 1), 5px 0 13px 2px rgba(255, 255, 255, 1);
     }
     .header__wrapper{
         width: 348px;
@@ -220,6 +244,10 @@ main{
 }
 
 @media (max-width: 414px) {
+    main{
+        overflow: hidden;
+        height: calc(100vh - 140px);
+    }
     .container {
         border-radius: 0;
     }
