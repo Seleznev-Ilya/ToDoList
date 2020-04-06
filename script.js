@@ -56,8 +56,14 @@ function highlightDay() {
         thisDayWrapper.children[7].children[1].style.fontWeight = 'bold';
         thisDayWrapper.children[7].style.color = 'Tomato';
     }
+    for (let i = 0; i < week.length; i++) {
+        if(i < today.getDay()){
+            document.querySelector(".date__wrapper").children[0].children[0].style.color =  'grey';
+            document.querySelector(".date__wrapper").children[0].children[1].style.color =  'grey';
+            document.querySelector(".date__wrapper").children[0].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+        }
+    }
 }
-
 function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
@@ -92,3 +98,5 @@ wrapperDate.addEventListener('click', (event) => {
 });
 buttonTodayL.addEventListener('click', moveRelevantDate);
 buttonTodayR.addEventListener('click', moveRelevantDate);
+
+

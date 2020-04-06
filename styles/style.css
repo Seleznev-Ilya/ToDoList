@@ -71,6 +71,7 @@
     margin: 0 auto;
 }
 
+
 .date_left_today, .date_right_today {
     position: absolute;
     top: calc(50% - 45px / 2);
