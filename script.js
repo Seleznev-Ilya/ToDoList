@@ -1,4 +1,4 @@
-const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+const week = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon'],
     wrapperDate = document.querySelector('.date__wrapper'), containerDate = document.querySelector('.date__container'),
     buttonTodayL = document.querySelector('.date_left_today'), buttonTodayR = document.querySelector('.date_right_today'),
     today = new Date();
@@ -18,7 +18,7 @@ window.onresize = function () {
 };
 
 function drawDates() {
-    let k = 1;
+    let k = 0;
     for (let i = 0; i < week.length; i++) {
         let dayItem = document.createElement('div');
         dayItem.classList.add('week_day');
@@ -38,7 +38,7 @@ function drawDates() {
         if (today.getDay() !== 0) {
             month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
         } else {
-            month.innerText = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
+            month.innerText = new Date((today.getTime() - 8 * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
         }
         dayItem.append(day);
         monthWrapper.append(month);
@@ -50,26 +50,26 @@ function drawDates() {
 function highlightDay() {
     let thisDayWrapper = document.querySelector(".date__wrapper");
     if (today.getDay() !== 0) {
-        thisDayWrapper.children[today.getDay() - 1].children[1].style.fontWeight = 'bold';
-        thisDayWrapper.children[today.getDay() - 1].style.color = 'Tomato';
+        thisDayWrapper.children[today.getDay() ].children[1].style.fontWeight = 'bold';
+        thisDayWrapper.children[today.getDay() ].style.color = 'Tomato';
     } else {
-        thisDayWrapper.children[6].children[1].style.fontWeight = 'bold';
-        thisDayWrapper.children[6].style.color = 'Tomato';
+        thisDayWrapper.children[7].children[1].style.fontWeight = 'bold';
+        thisDayWrapper.children[7].style.color = 'Tomato';
     }
 }
 
 function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
-            containerDate.style.left = (-today.getDay() + 2) * (document.documentElement.clientWidth / 3) + 'px';
+            containerDate.style.left = (-today.getDay() + 1) * (document.documentElement.clientWidth / 3) + 'px';
         } else {
             containerDate.style.left = (-document.documentElement.clientWidth / 3) * 5 + 'px';
         }
     } else if (document.documentElement.clientWidth > 414) {
         if (today.getDay() !== 0) {
-            containerDate.style.left = (-today.getDay() + 2) * (348 / 3) + 'px';
+            containerDate.style.left = (-today.getDay() + 1) * (348 / 3) + 'px';
         } else {
-            containerDate.style.left = (-348 / 3) * 5 + 'px';
+            containerDate.style.left = (-348 / 3) * 6 + 'px';
         }
     }
 }
