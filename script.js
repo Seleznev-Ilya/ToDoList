@@ -58,9 +58,9 @@ function highlightDay() {
     }
     for (let i = 0; i < week.length; i++) {
         if(i < today.getDay()){
-            document.querySelector(".date__wrapper").children[0].children[0].style.color =  'grey';
-            document.querySelector(".date__wrapper").children[0].children[1].style.color =  'grey';
-            document.querySelector(".date__wrapper").children[0].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+            document.querySelector(".date__wrapper").children[i].children[0].style.color =  'grey';
+            document.querySelector(".date__wrapper").children[i].children[1].style.color =  'grey';
+            document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
         }
     }
 }
