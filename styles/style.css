@@ -339,7 +339,7 @@ header {
     }
 
     .todo{
-      
+      overflow: hidden;
     }
     main,.main__list, .main__list_container{
         height: calc(100vh - 124px);
