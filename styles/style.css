@@ -320,7 +320,7 @@ header {
 @media (max-width: 414px) {
     main {
         overflow: hidden;
-        height: calc(100vh - 140px);
+        height: calc(95vh - 140px);
     }
 
     .container {
