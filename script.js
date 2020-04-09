@@ -1,8 +1,9 @@
-const week = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon'],
+const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon'],
     wrapperDate = document.querySelector('.date__wrapper'), containerDate = document.querySelector('.date__container'),
-    buttonTodayL = document.querySelector('.date_left_today'), buttonTodayR = document.querySelector('.date_right_today'),
+    buttonTodayL = document.querySelector('.date_left_today'),
+    buttonTodayR = document.querySelector('.date_right_today'),
     today = new Date();
-    let time,
+let time,
     timer = setTimeout(function step() {
         if (today.getHours() === 23 && today.getMinutes() === 59) {
             setTimeout(location.reload(), 59500);
@@ -50,20 +51,21 @@ function drawDates() {
 function highlightDay() {
     let thisDayWrapper = document.querySelector(".date__wrapper");
     if (today.getDay() !== 0) {
-        thisDayWrapper.children[today.getDay() ].children[1].style.fontWeight = 'bold';
-        thisDayWrapper.children[today.getDay() ].style.color = 'Tomato';
+        thisDayWrapper.children[today.getDay()].children[1].style.fontWeight = 'bold';
+        thisDayWrapper.children[today.getDay()].style.color = 'Tomato';
     } else {
         thisDayWrapper.children[7].children[1].style.fontWeight = 'bold';
         thisDayWrapper.children[7].style.color = 'Tomato';
     }
     for (let i = 0; i < week.length; i++) {
-        if(i < today.getDay()){
-            document.querySelector(".date__wrapper").children[i].children[0].style.color =  'grey';
-            document.querySelector(".date__wrapper").children[i].children[1].style.color =  'grey';
+        if (i < today.getDay()) {
+            document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+            document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
             document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
         }
     }
 }
+
 function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
         if (today.getDay() !== 0) {
@@ -106,9 +108,10 @@ mainButton.addEventListener('click', openAddNew);
 mainButton.addEventListener('click', changeMainButton);
 
 let buttonSwitch = 0;
-function openAddNew(){
 
-    if (buttonSwitch === 0){
+function openAddNew() {
+
+    if (buttonSwitch === 0) {
         if (document.documentElement.clientWidth <= 414) {
             mainList.style.left = document.documentElement.clientWidth * 0.9 + 'px';
         } else {
@@ -120,6 +123,48 @@ function openAddNew(){
         buttonSwitch = 0;
     }
 }
+
+let buttonSwitchtwo = 0;
+
 function changeMainButton() {
+    let crossOne = document.querySelector('.main__button_before');
+    let crossTwo = document.querySelector('.main__button_after');
+    let buttonSubmit = document.querySelector('.main__button_text');
+    if (buttonSwitchtwo === 0) {
+        crossOne.style.opacity = 0;
+        crossTwo.style.opacity = 0;
+
+
+        setTimeout(() => {
+            crossOne.style.display = 'none';
+            crossTwo.style.display = 'none';
+            mainButton.style.width = 155 + 'px';
+            buttonSubmit.style.opacity = 1;
+            buttonSubmit.classList.toggle('hide');
+        }, 50);
+        setTimeout(()=>{
+            buttonSubmit.style.fontSize = 23 + 'px';
+        }, 200);
+
+
+
+        buttonSwitchtwo = 1;
+    } else {
+        setTimeout(() => {
+            crossOne.style.opacity = 1;
+            crossTwo.style.opacity = 1;
+            mainButton.style.width = 55 + 'px';
+            buttonSubmit.classList.toggle('hide');
+        }, 100);
+        crossOne.style.display = 'block';
+        crossTwo.style.display = 'block';
+        buttonSubmit.style.opacity = 0;
+        buttonSubmit.style.fontSize = 14 + 'px';
+
+
+
+
+        buttonSwitchtwo = 0;
+    }
 
 }

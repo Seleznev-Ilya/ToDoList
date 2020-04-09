@@ -37,15 +37,21 @@
 
 .main__button_text {
     font-weight: bold;
-    opacity: 0;
-    transition: .5s ease;
+    transition: .666s ease;
+    opacity: 1;
+    font-size: 14px;
     margin: 0;
+}
+.hide{
+    display: none;
+    opacity: 0;
+    transition: .3s ease;
 }
 
 .main__button {
     text-align: center;
     line-height: 45px;
-    transition: .5s ease;
+    transition: .7s ease;
     height: 55px;
     width: 55px;
     border-radius: 55px;
@@ -71,6 +77,9 @@
     border-radius: 4px;
     background: tomato;
     box-shadow:  0 0 4px -1px rgba(0, 0, 0, .3);
+    opacity: 1;
+    transition: .3s ease;
+
 }
 .main__button_after{
     content: "";
@@ -80,6 +89,8 @@
     /*background: black;*/
     bottom: 15%;
     left: 45%;
+    opacity: 1;
+    transition: .3s ease;
     border-radius: 4px;
     background: tomato;
     box-shadow:  0 0 4px -1px rgba(0, 0, 0, .5);
