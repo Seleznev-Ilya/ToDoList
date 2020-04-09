@@ -329,6 +329,9 @@ header {
 }
 
 @media (max-width: 414px) {
+    .main__button {
+        bottom: 11%;
+    }
     .todo{
         /*height: 100vh;*/
     }
