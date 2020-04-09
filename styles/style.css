@@ -204,7 +204,7 @@ header {
     }
     main {
         overflow: hidden;
-        height: calc(100% - 140px);
+        height: calc(100% - 144px);
     }
 
     .date__container {
@@ -337,7 +337,7 @@ header {
     }
     main {
         overflow: hidden;
-        height: calc(100vh - 140px);
+        height: calc(100vh - 144px);
     }
 
     .container {
