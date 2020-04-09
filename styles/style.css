@@ -318,9 +318,12 @@ header {
 }
 
 @media (max-width: 414px) {
+    .todo{
+        /*height: 100vh;*/
+    }
     main {
         overflow: hidden;
-        height: calc(95vh - 140px);
+        height: calc(100vh - 140px);
     }
 
     .container {
