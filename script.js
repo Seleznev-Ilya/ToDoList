@@ -5,10 +5,10 @@ const week = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon'],
     let time,
     timer = setTimeout(function step() {
         if (today.getHours() === 23 && today.getMinutes() === 59) {
-            setTimeout(location.reload(), 10000);
+            setTimeout(location.reload(), 59500);
         }
-        timer = setTimeout(step, 30000);
-    }, 30000);
+        timer = setTimeout(step, 1000);
+    }, 1000);
 window.onresize = function () {
     if (time)
         clearTimeout(time);
@@ -99,4 +99,27 @@ wrapperDate.addEventListener('click', (event) => {
 buttonTodayL.addEventListener('click', moveRelevantDate);
 buttonTodayR.addEventListener('click', moveRelevantDate);
 
+let mainButton = document.querySelector('.main__button');
+let mainList = document.querySelector('.main__list_container');
 
+mainButton.addEventListener('click', openAddNew);
+mainButton.addEventListener('click', changeMainButton);
+
+let buttonSwitch = 0;
+function openAddNew(){
+
+    if (buttonSwitch === 0){
+        if (document.documentElement.clientWidth <= 414) {
+            mainList.style.left = document.documentElement.clientWidth * 0.9 + 'px';
+        } else {
+            mainList.style.left = 348 * .9 + 'px';
+        }
+        buttonSwitch = 1;
+    } else {
+        mainList.style.left = 0 + 'px';
+        buttonSwitch = 0;
+    }
+}
+function changeMainButton() {
+
+}
