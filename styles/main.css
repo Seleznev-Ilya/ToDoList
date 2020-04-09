@@ -5,7 +5,7 @@
 }
 @media (max-width: 414px) {
     body {
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
     }
 }
