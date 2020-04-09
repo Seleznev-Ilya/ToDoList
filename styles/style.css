@@ -273,6 +273,7 @@ header {
         background: transparent;
         height: 6px;
         width: 13px;
+        transform: rotate(9deg);
         border-right: 4px solid black;
         border-top: 6px solid black;
         border-top-right-radius: 10px;
@@ -282,6 +283,7 @@ header {
         content: '';
         position: absolute;
         top: -4px;
+        transform: rotate(-9deg);
         right: -12px;
         background: transparent;
         height: 6px;
