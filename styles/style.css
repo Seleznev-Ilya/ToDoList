@@ -166,13 +166,14 @@
 
 .toDoit {
     position: absolute;
-    top: -47px;
+    top: -35px;
     left: calc(50% - 60px / 2);
     z-index: 1;
 }
 
 .toDoitp {
     width: 60px;
+    font-size: 18px;
     text-align: center;
     font-weight: bold;
     color: rgba(3, 201, 169, 1);
@@ -197,6 +198,9 @@ header {
 }
 
 @media (min-width: 415px) {
+    .toDoit{
+        display: none;
+    }
 
     .main__list, .main__list_container {
         border-bottom-right-radius: 30pt;
@@ -329,8 +333,11 @@ header {
 }
 
 @media (max-width: 414px) {
+    .container__header {
+        padding-top: 15px;
+    }
     .main__button {
-        bottom: 11%;
+        bottom: 7%;
     }
     .todo{
         /*height: 100vh;*/
