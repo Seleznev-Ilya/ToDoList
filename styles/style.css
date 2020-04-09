@@ -335,6 +335,7 @@ header {
 @media (max-width: 414px) {
     .container__header {
         padding-top: 15px;
+        height: 124px;
     }
 
     .todo{
