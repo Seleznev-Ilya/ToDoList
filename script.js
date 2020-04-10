@@ -103,12 +103,12 @@ buttonTodayR.addEventListener('click', moveRelevantDate);
 
 let mainButton = document.querySelector('.main__button');
 let mainList = document.querySelector('.main__list_container');
+let listReminder  = document.querySelector('.list_reminder');
 
 mainButton.addEventListener('click', openAddNew);
 mainButton.addEventListener('click', changeMainButton);
 
-let buttonSwitch = 0;
-
+let buttonSwitch = 0, buttonSwitchTwo = 0;
 function openAddNew() {
 
     if (buttonSwitch === 0) {
@@ -123,18 +123,14 @@ function openAddNew() {
         buttonSwitch = 0;
     }
 }
-
-let buttonSwitchtwo = 0;
-
 function changeMainButton() {
     let crossOne = document.querySelector('.main__button_before');
     let crossTwo = document.querySelector('.main__button_after');
     let buttonSubmit = document.querySelector('.main__button_text');
-    if (buttonSwitchtwo === 0) {
+
+    if (buttonSwitchTwo === 0) {
         crossOne.style.opacity = 0;
         crossTwo.style.opacity = 0;
-
-
         setTimeout(() => {
             crossOne.style.display = 'none';
             crossTwo.style.display = 'none';
@@ -146,9 +142,7 @@ function changeMainButton() {
             buttonSubmit.style.fontSize = 23 + 'px';
         }, 200);
 
-
-
-        buttonSwitchtwo = 1;
+        buttonSwitchTwo = 1;
     } else {
         setTimeout(() => {
             crossOne.style.opacity = 1;
@@ -161,10 +155,86 @@ function changeMainButton() {
         buttonSubmit.style.opacity = 0;
         buttonSubmit.style.fontSize = 14 + 'px';
 
+        buttonSwitchTwo = 0;
+    }
+}
 
+let testObj = {
+    dane: false,
+    date: "2020-04-10T16:55:20.319Z",
+    dateEnd: "2011-01-01T12:00:00.000Z",
+    heading: "JS",
+    description: "повторить замыкание, сделать пару задачь",
+};
 
+console.log(new Date(testObj.date).getHours(), new Date(testObj.date).getMinutes());
 
-        buttonSwitchtwo = 0;
+function drawRemainder() {
+    let reminder = document.createElement('div');
+    reminder.classList.add('reminder');
+    if (document.documentElement.clientWidth <= 414) {
+        listReminder.style.width = document.documentElement.clientWidth * .75 + 'px';
+    } else {
+        listReminder.style.width = 348 * .75 + 'px';
     }
 
+
+
+    let reminderItemText = document.createElement('div');
+    reminderItemText.classList.add('reminderItemText');
+    reminder.append(reminderItemText);
+
+    let h2 = document.createElement('h3');
+    h2.classList.add('reminderH2');
+    h2.innerText = testObj.heading;
+    reminderItemText.append(h2);
+
+    let reminderDescription = document.createElement("div");
+    reminderDescription.classList.add('reminderDescContainer');
+    reminderItemText.append(reminderDescription);
+
+    let desc = document.createElement('p');
+    desc.classList.add('reminderDesc');
+    desc.innerText = testObj.description;
+    reminderDescription.append(desc);
+
+
+    let reminderItemData = document.createElement('div');
+    reminderItemData.classList.add('reminderItemData');
+    reminder.append(reminderItemData);
+
+    let reminderCheck = document.createElement("div");
+    reminderCheck.classList.add('reminderCheck');
+    reminderItemData.append(reminderCheck);
+
+    let reminderTimeTo = document.createElement("div");
+    reminderTimeTo.classList.add('reminderTimeTo');
+    reminderItemData.append(reminderTimeTo);
+
+
+    listReminder.append(reminder)
 }
+drawRemainder();
+drawRemainder();
+drawRemainder();
+drawRemainder();
+drawRemainder();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
