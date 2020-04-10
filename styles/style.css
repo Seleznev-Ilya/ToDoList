@@ -31,8 +31,6 @@
     position: relative;
     top: 0;
     left: 0;
-    transition: .7s ease-in;
-    /*transition-timing-function: cubic-bezier(1.6, 3.5, -1.2, 5);*/
     padding: 22px 0 0 22px;
     display: flex;
     justify-content: flex-end;
@@ -260,6 +258,8 @@ header {
     .main__list, .main__list_container {
         border-bottom-right-radius: 30pt;
         border-bottom-left-radius: 30pt;
+        transition: .7s;
+        transition-timing-function: cubic-bezier(1.6, 3.5, -1.2, 5);
     }
     main {
         /*overflow: hidden;*/
@@ -390,6 +390,10 @@ header {
 }
 
 @media (max-width: 414px) {
+    .main__list_container{
+        transition: .5s ease;
+    }
+
     .container__header {
         padding-top: 20px;
         height: 124px;
