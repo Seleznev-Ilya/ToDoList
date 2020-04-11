@@ -34,6 +34,15 @@
       </header>
       <main>
          <div class = "main__list">
+            <div class="main__form">
+               <form>
+                  <input class="selectTime" type="datetime-local" name="newTime" min="2017-06-01T08:30"  required tabindex="1"><br>
+                  <input id = "heading" name = "heading" type = "text" placeholder = "Heading" maxlength="16" required tabindex="2">
+                  <span class="validity"></span>
+                  <textarea id = "description" name = "desc" type = "texta"  placeholder = "Description" maxlength="144" ></textarea>
+               </form>
+            </div>
+
             <div class = "main__list_container">
                <div class = "list_reminder"></div>
             </div>

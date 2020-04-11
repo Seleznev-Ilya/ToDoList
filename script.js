@@ -159,6 +159,10 @@ function changeMainButton() {
     }
 }
 
+
+
+
+
 let testObj = {
     dane: true,
     date: "2020-04-10T16:55:20.319Z",
@@ -166,7 +170,6 @@ let testObj = {
     heading: "JS",
     description: "повторить замыкание, сделать пару задачь",
 };
-
 console.log(new Date(testObj.date).getHours(), new Date(testObj.date).getMinutes());
 
 function drawRemainder() {
@@ -246,9 +249,8 @@ function drawRemainder() {
     listReminder.append(reminder);
 }
 
-drawRemainder();
-drawRemainder();
-drawRemainder();
+
+
 drawRemainder();
 
 

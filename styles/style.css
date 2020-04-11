@@ -14,13 +14,13 @@
     box-shadow: inset 2px 11px 17px -14px rgba(3, 201, 169, 0.3);
     border-top: 4px groove rgba(3, 201, 169, .7);
     width: auto;
-    height: 100% ;
+    height: 100%;
     overflow: hidden;
     border-top-left-radius: 77px;
     position: relative;
     /*background: rgba(3, 201, 169, .8);*/
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 11%, rgba(49,233,220,0.8230479691876751) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 44%, rgba(49, 233, 220, 0.8230479691876751) 100%);
 }
 
 .main__list_container {
@@ -37,30 +37,34 @@
     display: flex;
     justify-content: flex-end;
 }
-.list_reminder{
+
+.list_reminder {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 20px;
 
 }
-.reminderRelevant{
-    box-shadow: 0 3px 11px 3px  rgba(0, 0, 0, 0.4);
+
+.reminderRelevant {
+    box-shadow: 0 3px 11px 3px rgba(0, 0, 0, 0.4);
     transform: translateX(-5%);
 }
-.reminder{
-    box-shadow: 0 3px 11px 3px  rgba(0, 0, 0, 0.3);
+
+.reminder {
+    box-shadow: 0 3px 11px 3px rgba(0, 0, 0, 0.3);
     border-radius: 10pt;
     height: 130px;
-    border: 3px solid  rgba(0, 0, 0, 0);
+    border: 3px solid rgba(0, 0, 0, 0);
     margin-bottom: 20px;
-    transform: translateX( -4%);
+    transform: translateX(-4%);
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: white;
 }
-.reminderItemText{
+
+.reminderItemText {
     width: 77%;
     height: 100%;
     border-right: 1px solid lightgray;
@@ -68,29 +72,34 @@
     flex-direction: column;
     padding: 3px;
 }
-.reminderItemData{
+
+.reminderItemData {
     width: 23%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-.reminderH2{
+
+.reminderH2 {
     margin: 0 0 2px 0;
     height: 15%;
 }
-.reminderDescContainer{
+
+.reminderDescContainer {
     height: 85%;
     overflow: hidden;
 }
-.reminderDesc{
+
+.reminderDesc {
     font-size: 12pt;
 }
 
-.reminderCheck, .reminderTimeTo{
+.reminderCheck, .reminderTimeTo {
     width: 100%;
     height: 50%;
 }
-.reminderTimeTo{
+
+.reminderTimeTo {
     width: 100%;
     height: 50%;
     display: flex;
@@ -101,17 +110,19 @@
 
 }
 
-#idImg{
+#idImg {
     display: none;
 }
-.labelImg{
+
+.labelImg {
     display: block;
     height: 58px;
     width: 100%;
     background-repeat: no-repeat;
     background-size: contain;
 }
-.timerImg1{
+
+.timerImg1 {
     display: block;
     height: 18px;
     width: 18px;
@@ -120,11 +131,13 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
-.reminderTimeTo span{
+
+.reminderTimeTo span {
     display: inline;
     font-size: .7em;
     margin-top: 2px;
 }
+
 .main__button_text {
     /*font-weight: bold;*/
     transition: .666s ease;
@@ -132,7 +145,8 @@
     font-size: 14px;
     margin: 0;
 }
-.hide{
+
+.hide {
     display: none;
     opacity: 0;
     transition: .3s ease;
@@ -153,10 +167,12 @@
     background: white;
     box-shadow: 0 0 11px rgba(0, 0, 0, .7);
 }
-.main__button:active{
+
+.main__button:active {
     box-shadow: 0 0 11px rgba(0, 0, 0, .7), inset 0 0 30px rgba(3, 201, 169, 1);
 }
-.main__button_before{
+
+.main__button_before {
     content: "";
     position: absolute;
     height: 4px;
@@ -166,12 +182,13 @@
     left: 17%;
     border-radius: 4px;
     background: tomato;
-    box-shadow:  0 0 4px -1px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 4px -1px rgba(0, 0, 0, .3);
     opacity: 1;
     transition: .3s ease;
 
 }
-.main__button_after{
+
+.main__button_after {
     content: "";
     position: absolute;
     height: 30px;
@@ -183,7 +200,7 @@
     transition: .3s ease;
     border-radius: 4px;
     background: tomato;
-    box-shadow:  0 0 4px -1px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 4px -1px rgba(0, 0, 0, .5);
 
 }
 
@@ -287,8 +304,108 @@ header {
     width: auto;
 }
 
+.main__form {
+    position: absolute;
+    top: 40%;
+    left: calc(50% - 150px);
+}
+
+.main__form form {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    /*justify-content: flex-end;*/
+    flex-direction: column;
+    text-align: right;
+}
+input:required {
+    border-color: #800000;
+    border-width: 3px;
+}
+#heading {
+    position: relative;
+    top: -47px;
+    left: 1px;
+    border: none;
+    background-color: transparent;
+    outline: 0;
+    margin-bottom: 5px;
+    max-width: content-box;
+    display: none;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+#heading:invalid + span:after{
+    content: '⚐';
+    position: absolute;
+    top: 0;
+    left: -17px;
+}
+
+#heading:valid  + span:after{
+    content: '⚑';
+    position: absolute;
+    top: 0;
+    left: -17px;
+}
+#heading:valid  ~ #description{
+   display: inline-block;
+}
+
+#description {
+    padding: 5px;
+    text-transform: capitalize;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    display: none;
+    outline: 0;
+    border: none;
+    resize: none;
+    background: transparent;
+    color: black;
+    border-radius: 5px;
+    width: 80%;
+    height: 70px;
+    overflow: fragments;
+    font-size: 16px;
+}
+#description:focus{
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,140,140,0.5) 50%);
+    border-radius: 5px;
+}
+
+.selectTime {
+    font-size: 23px;
+    position: relative;
+    top: -5px;
+    outline: 0;
+    border: none;
+    background: transparent;
+    color: grey;
+}
+.selectTime:valid ~ #heading{
+     display: inline-block;
+ }
+.selectTime:valid{
+    top: -30px;
+    font-size: 14px;
+}
+
+.submit {
+    position: absolute;
+    height: 22px;
+    width: 111px;
+    background-color: orange;
+    border: 0;
+    bottom: 5%;
+}
+
 @media (min-width: 415px) {
-    .toDoit{
+    .toDoit {
         display: none;
     }
 
@@ -298,6 +415,7 @@ header {
         transition: .7s;
         transition-timing-function: cubic-bezier(1.6, 3.5, -1.2, 5);
     }
+
     main {
         /*overflow: hidden;*/
         height: calc(100% - 140px);
@@ -428,7 +546,7 @@ header {
 
 @media (max-width: 414px) {
 
-    .main__list_container{
+    .main__list_container {
         transition: .5s ease;
     }
 
@@ -437,18 +555,21 @@ header {
         height: 124px;
     }
 
-    .todo{
-      overflow: hidden;
+    .todo {
+        overflow: hidden;
     }
-    main,.main__list, .main__list_container{
+
+    main, .main__list, .main__list_container {
         height: calc(100vh - 124px);
     }
+
     .container {
         border-radius: 0;
     }
 }
+
 @media (max-width: 324px) {
-    .timerImg1{
+    .timerImg1 {
         display: block;
         height: 12px;
         width: 12px;
@@ -457,7 +578,8 @@ header {
         background-repeat: no-repeat;
         background-size: contain;
     }
-    .reminderTimeTo span{
+
+    .reminderTimeTo span {
         display: inline;
         font-size: .6em;
     }
