@@ -160,7 +160,7 @@ function changeMainButton() {
 }
 
 let testObj = {
-    dane: false,
+    dane: true,
     date: "2020-04-10T16:55:20.319Z",
     dateEnd: "2011-01-01T12:00:00.000Z",
     heading: "JS",
@@ -189,6 +189,7 @@ function drawRemainder() {
     h2.innerText = testObj.heading;
     reminderItemText.append(h2);
 
+
     let reminderDescription = document.createElement("div");
     reminderDescription.classList.add('reminderDescContainer');
     reminderItemText.append(reminderDescription);
@@ -199,26 +200,57 @@ function drawRemainder() {
     reminderDescription.append(desc);
 
 
+
     let reminderItemData = document.createElement('div');
     reminderItemData.classList.add('reminderItemData');
     reminder.append(reminderItemData);
+
 
     let reminderCheck = document.createElement("div");
     reminderCheck.classList.add('reminderCheck');
     reminderItemData.append(reminderCheck);
 
+    let inputImg = document.createElement('input');
+    inputImg.id = 'idImg';
+    inputImg.type = 'checkbox';
+    reminderCheck.append(inputImg);
+
+    let labelImg = document.createElement('label');
+    labelImg.classList.add('labelImg');
+    labelImg.setAttribute( 'for', 'idImg' );
+    if (testObj.dane === true){
+        labelImg.style.backgroundImage = "url('image/unchecked.png')";
+    } else {
+        labelImg.style.backgroundImage = "url('image/checked.png')";
+    }
+    reminderCheck.append(labelImg);
+
+
     let reminderTimeTo = document.createElement("div");
     reminderTimeTo.classList.add('reminderTimeTo');
     reminderItemData.append(reminderTimeTo);
 
+    let timerImg1 = document.createElement('div');
+    timerImg1.classList.add('timerImg1');
+    reminderTimeTo.append(timerImg1);
 
-    listReminder.append(reminder)
+    let timerTime = document.createElement('span');
+    timerTime.classList.add('timerTime');
+    if ( new Date(testObj.dateEnd).getMinutes() < 10){
+        timerTime.innerText = new Date(testObj.dateEnd).getHours() + ':0' +  new Date(testObj.dateEnd).getMinutes();
+    }else {
+        timerTime.innerText = new Date(testObj.dateEnd).getHours() + ':' +  new Date(testObj.dateEnd).getMinutes();
+    }
+    reminderTimeTo.append(timerTime);
+
+    listReminder.append(reminder);
 }
+
 drawRemainder();
 drawRemainder();
 drawRemainder();
 drawRemainder();
-drawRemainder();
+
 
 
 
