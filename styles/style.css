@@ -386,10 +386,16 @@ input:required {
     border: none;
     background: transparent;
     color: grey;
+    width: 75%;
 }
 .selectTime:valid ~ #heading{
      display: inline-block;
  }
+.selectTime:invalid{
+    border-radius: 5px;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,140,140,0.5) 100%);
+}
 .selectTime:valid{
     top: -30px;
     font-size: 14px;
