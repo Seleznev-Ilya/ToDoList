@@ -386,7 +386,7 @@ input:required {
     border: none;
     background: transparent;
     color: grey;
-    width: 75%;
+    width: 240px;
 }
 .selectTime:valid ~ #heading{
      display: inline-block;
