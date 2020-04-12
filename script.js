@@ -241,7 +241,7 @@ function drawRemainder() {
     if (testObj.dane === true){
         labelImg.style.backgroundImage = "url('image/unchecked.png')";
     } else {
-        labelImg.style.backgroundImage = "url('image/checked.png')";
+        // labelImg.style.backgroundImage = "url('image/checked.png')";
     }
     reminderCheck.append(labelImg);
 

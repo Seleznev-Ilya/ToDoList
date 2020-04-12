@@ -113,8 +113,11 @@
 #idImg {
     display: none;
 }
-
+#idImg:checked ~ .labelImg{
+    background-image: url("../image/checked.png");
+}
 .labelImg {
+    background-image: url("../image/unchecked.png");
     display: block;
     height: 58px;
     width: 100%;
