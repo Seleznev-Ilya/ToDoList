@@ -177,10 +177,10 @@ function getDataForm() {
             this.dateEnd = JSON.stringify(dateEnd);
             this.heading = heading;
             this.description = description;
-        };
-        testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[6].value);
+        }
+        testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
 
-        console.log(testObj);
+        console.log(form.children[0].value);
         drawRemainder();
     } else {
         restriction.focus();
@@ -241,7 +241,7 @@ function drawRemainder() {
     if (testObj.dane === true){
         labelImg.style.backgroundImage = "url('image/unchecked.png')";
     } else {
-        // labelImg.style.backgroundImage = "url('image/checked.png')";
+        labelImg.style.backgroundImage = "url('image/checked.png')";
     }
     reminderCheck.append(labelImg);
 
