@@ -14,12 +14,12 @@ window.onresize = function () {
     if (time)
         clearTimeout(time);
     time = setTimeout(function () {
-        location.reload();
+        // location.reload();
     }, 123);
 };
 
 function drawDates() {
-    let k = 0;
+    let k = 1;
     for (let i = 0; i < week.length; i++) {
         let dayItem = document.createElement('div');
         dayItem.classList.add('week_day');
@@ -71,7 +71,7 @@ function moveRelevantDate() {
         if (today.getDay() !== 0) {
             containerDate.style.left = (-today.getDay() + 1) * (document.documentElement.clientWidth / 3) + 'px';
         } else {
-            containerDate.style.left = (-document.documentElement.clientWidth / 3) * 5 + 'px';
+            containerDate.style.left = (-document.documentElement.clientWidth / 3) * 6 + 'px';
         }
     } else if (document.documentElement.clientWidth > 414) {
         if (today.getDay() !== 0) {
@@ -161,16 +161,33 @@ function changeMainButton() {
 
 
 
+let array = [];
+let restriction = document.querySelector('.selectTime');
+restriction.setAttribute("min", `${new Date(today)}`);
 
+let testObj ;
+let form = document.querySelector('form');
+mainButton.addEventListener('click', getDataForm);
 
-let testObj = {
-    dane: true,
-    date: "2020-04-10T16:55:20.319Z",
-    dateEnd: "2011-01-01T12:00:00.000Z",
-    heading: "JS",
-    description: "повторить замыкание, сделать пару задачь",
-};
-console.log(new Date(testObj.date).getHours(), new Date(testObj.date).getMinutes());
+function getDataForm() {
+    if (buttonSwitchTwo === 0){
+        function Reminder(dateEnd, heading, description) {
+            this.dane = false;
+            this.date = JSON.stringify(new Date(today));
+            this.dateEnd = JSON.stringify(dateEnd);
+            this.heading = heading;
+            this.description = description;
+        };
+        testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[6].value);
+
+        console.log(testObj);
+        drawRemainder();
+    } else {
+        restriction.focus();
+    }
+
+}
+
 
 function drawRemainder() {
     let reminder = document.createElement('div');
@@ -239,10 +256,19 @@ function drawRemainder() {
 
     let timerTime = document.createElement('span');
     timerTime.classList.add('timerTime');
-    if ( new Date(testObj.dateEnd).getMinutes() < 10){
-        timerTime.innerText = new Date(testObj.dateEnd).getHours() + ':0' +  new Date(testObj.dateEnd).getMinutes();
+    if ( new Date(JSON.parse(testObj.dateEnd)).getMinutes() < 10){
+        if ( new Date(JSON.parse(testObj.dateEnd)).getHours() < 10){
+            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+        } else {
+            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+        }
     }else {
-        timerTime.innerText = new Date(testObj.dateEnd).getHours() + ':' +  new Date(testObj.dateEnd).getMinutes();
+        if ( new Date(JSON.parse(testObj.dateEnd)).getHours() < 10){
+            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+        } else {
+            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+        }
+
     }
     reminderTimeTo.append(timerTime);
 
@@ -251,13 +277,17 @@ function drawRemainder() {
 
 
 
-drawRemainder();
 
-
-
-
-
-
+// let testObj = {
+//     dane: true,
+//     date: "2020-04-10T16:55:20.319Z",
+//     dateEnd: "2011-01-01T12:00:00.000Z",
+//     heading: "JS",
+//     description: "повторить замыкание, сделать пару задачь",
+// };
+// console.log(form.children[0].value);
+// console.log(form.children[3].value);
+// console.log(form.children[6].value);
 
 
 

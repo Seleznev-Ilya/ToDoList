@@ -356,7 +356,6 @@ input:required {
 
 #description {
     padding: 5px 0;
-    text-transform: capitalize;
     position: absolute;
     left: 0;
     top: 30px;
