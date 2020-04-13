@@ -19,7 +19,7 @@ window.onresize = function () {
 };
 
 function drawDates() {
-    let k = 1;
+    let k = 0;
     for (let i = 0; i < week.length; i++) {
         let dayItem = document.createElement('div');
         dayItem.classList.add('week_day');
@@ -39,7 +39,7 @@ function drawDates() {
         if (today.getDay() !== 0) {
             month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
         } else {
-            month.innerText = new Date((today.getTime() - 8 * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
+            month.innerText = new Date((today.getTime() - 8 * 24 * 3600 * 1000) + ((k++) + 1) * 24 * 3600 * 1000).getDate();
         }
         dayItem.append(day);
         monthWrapper.append(month);
@@ -103,12 +103,13 @@ buttonTodayR.addEventListener('click', moveRelevantDate);
 
 let mainButton = document.querySelector('.main__button');
 let mainList = document.querySelector('.main__list_container');
-let listReminder  = document.querySelector('.list_reminder');
+let listReminder = document.querySelector('.list_reminder');
 
 mainButton.addEventListener('click', openAddNew);
 mainButton.addEventListener('click', changeMainButton);
 
 let buttonSwitch = 0, buttonSwitchTwo = 0;
+
 function openAddNew() {
 
     if (buttonSwitch === 0) {
@@ -123,6 +124,7 @@ function openAddNew() {
         buttonSwitch = 0;
     }
 }
+
 function changeMainButton() {
     let crossOne = document.querySelector('.main__button_before');
     let crossTwo = document.querySelector('.main__button_after');
@@ -138,7 +140,7 @@ function changeMainButton() {
             buttonSubmit.style.opacity = 1;
             buttonSubmit.classList.toggle('hide');
         }, 50);
-        setTimeout(()=>{
+        setTimeout(() => {
             buttonSubmit.style.fontSize = 23 + 'px';
         }, 200);
 
@@ -160,17 +162,16 @@ function changeMainButton() {
 }
 
 
-
 let array = [];
 let restriction = document.querySelector('.selectTime');
 restriction.setAttribute("min", `${new Date(today)}`);
 
-let testObj ;
+let testObj;
 let form = document.querySelector('form');
 mainButton.addEventListener('click', getDataForm);
 
 function getDataForm() {
-    if (buttonSwitchTwo === 0){
+    if (buttonSwitchTwo === 0) {
         function Reminder(dateEnd, heading, description) {
             this.dane = false;
             this.date = JSON.stringify(new Date(today));
@@ -178,12 +179,24 @@ function getDataForm() {
             this.heading = heading;
             this.description = description;
         }
+
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
 
-        console.log(form.children[0].value);
-        drawRemainder();
+        array.push(testObj);
+    // : не добавлять в массив, елсли нет соответствия
+        if (!form.children[0].value == '' && !form.children[3].value == ''){
+            drawRemainder();
+        }
+
+
     } else {
-        restriction.focus();
+      restriction.focus();
+      document.querySelector('form input[name=newTime]').value = '';
+      document.querySelector('form input[name=heading]').value = '';
+      document.querySelector('form textarea[name=desc]').value = '';
+
+
+
     }
 
 }
@@ -197,7 +210,6 @@ function drawRemainder() {
     } else {
         listReminder.style.width = 348 * .75 + 'px';
     }
-
 
 
     let reminderItemText = document.createElement('div');
@@ -220,7 +232,6 @@ function drawRemainder() {
     reminderDescription.append(desc);
 
 
-
     let reminderItemData = document.createElement('div');
     reminderItemData.classList.add('reminderItemData');
     reminder.append(reminderItemData);
@@ -237,11 +248,11 @@ function drawRemainder() {
 
     let labelImg = document.createElement('label');
     labelImg.classList.add('labelImg');
-    labelImg.setAttribute( 'for', 'idImg' );
-    if (testObj.dane === true){
-        labelImg.style.backgroundImage = "url('image/unchecked.png')";
+    labelImg.setAttribute('for', 'idImg');
+    if (testObj.dane === true) {
+        inputImg.checked = false;
     } else {
-        labelImg.style.backgroundImage = "url('image/checked.png')";
+        inputImg.checked = true;
     }
     reminderCheck.append(labelImg);
 
@@ -256,17 +267,17 @@ function drawRemainder() {
 
     let timerTime = document.createElement('span');
     timerTime.classList.add('timerTime');
-    if ( new Date(JSON.parse(testObj.dateEnd)).getMinutes() < 10){
-        if ( new Date(JSON.parse(testObj.dateEnd)).getHours() < 10){
-            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+    if (new Date(JSON.parse(testObj.dateEnd)).getMinutes() < 10) {
+        if (new Date(JSON.parse(testObj.dateEnd)).getHours() < 10) {
+            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
         } else {
-            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
         }
-    }else {
-        if ( new Date(JSON.parse(testObj.dateEnd)).getHours() < 10){
-            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+    } else {
+        if (new Date(JSON.parse(testObj.dateEnd)).getHours() < 10) {
+            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
         } else {
-            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' +  new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
         }
 
     }
@@ -275,19 +286,6 @@ function drawRemainder() {
     listReminder.append(reminder);
 }
 
-
-
-
-// let testObj = {
-//     dane: true,
-//     date: "2020-04-10T16:55:20.319Z",
-//     dateEnd: "2011-01-01T12:00:00.000Z",
-//     heading: "JS",
-//     description: "повторить замыкание, сделать пару задачь",
-// };
-// console.log(form.children[0].value);
-// console.log(form.children[3].value);
-// console.log(form.children[6].value);
 
 
 
