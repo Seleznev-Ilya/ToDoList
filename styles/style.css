@@ -110,22 +110,17 @@
 
 }
 
-#idImg {
+input[type=checkbox] {
     display: none;
 }
-#idImg:checked ~ .labelImg{
-    background-image: url("../image/checked.png");
-}
+
 .labelImg {
-    background-image: url("../image/unchecked.png");
     display: block;
     height: 58px;
     width: 100%;
     background-repeat: no-repeat;
     background-size: contain;
 }
-
-
 
 
 .timerImg1 {
@@ -325,10 +320,12 @@ header {
     flex-direction: column;
     text-align: right;
 }
+
 input:required {
     border-color: #800000;
     border-width: 3px;
 }
+
 #heading {
     position: relative;
     top: -47px;
@@ -343,21 +340,22 @@ input:required {
     text-transform: capitalize;
 }
 
-#heading:invalid + span:after{
+#heading:invalid + span:after {
     content: '⚐';
     position: absolute;
     top: 0;
     left: -17px;
 }
 
-#heading:valid  + span:after{
+#heading:valid + span:after {
     content: '⚑';
     position: absolute;
     top: 0;
     left: -17px;
 }
-#heading:valid  ~ #description{
-   display: inline-block;
+
+#heading:valid ~ #description {
+    display: inline-block;
 }
 
 #description {
@@ -377,9 +375,10 @@ input:required {
     overflow: fragments;
     font-size: 16px;
 }
-#description:focus{
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,140,140,0.5) 50%);
+
+#description:focus {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(135, 140, 140, 0.5) 50%);
     border-radius: 5px;
 }
 
@@ -393,13 +392,17 @@ input:required {
     color: grey;
     width: 240px;
 }
-.selectTime:valid ~ #heading{
-     display: inline-block;
- }
-.selectTime:invalid ~ .validity0{
-     display: inline-block;
- }
-.validity0{
+
+.selectTime:valid ~ #heading {
+    display: inline-block;
+
+}
+
+.selectTime:invalid ~ .validity0 {
+    display: inline-block;
+}
+
+.validity0 {
     border: 3px double red;
     padding: 2px;
     font-size: 12px;
@@ -414,12 +417,14 @@ input:required {
     top: -30px;
     left: 0px;
 }
-.selectTime:invalid{
+
+.selectTime:invalid {
     border-radius: 5px;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(135,140,140,0.1) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(135, 140, 140, 0.1) 100%);
 }
-.selectTime:valid{
+
+.selectTime:valid {
     top: -30px;
     font-size: 14px;
 }

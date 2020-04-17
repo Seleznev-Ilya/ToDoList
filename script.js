@@ -14,7 +14,7 @@ window.onresize = function () {
     if (time)
         clearTimeout(time);
     time = setTimeout(function () {
-        // location.reload();
+        location.reload();
     }, 123);
 };
 
@@ -161,12 +161,24 @@ function changeMainButton() {
     }
 }
 
-
 let array = [];
-let restriction = document.querySelector('.selectTime');
-restriction.setAttribute("min", `${new Date(today)}`);
 
+function newDayDrawIt() {
+    if (JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()))) !== undefined) {
+        array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())));
+        for (let key in array) {
+            drawRemainder(array[key], key);
+        }
+    } else {
+        for (let key in array) {
+            drawRemainder(array[key], key);
+        }
+    }
+}
+
+newDayDrawIt();
 let testObj;
+let restriction = document.querySelector('.selectTime');
 let form = document.querySelector('form');
 mainButton.addEventListener('click', getDataForm);
 
@@ -182,27 +194,26 @@ function getDataForm() {
 
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
 
-        array.push(testObj);
-    // : не добавлять в массив, елсли нет соответствия
-        if (!form.children[0].value == '' && !form.children[3].value == ''){
-            drawRemainder();
+        if (!form.children[0].value == '' && !form.children[3].value == '') {
+            listReminder.innerHTML = '';
+
+            array.push(testObj);
+            localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()), JSON.stringify(array));
+
+            for (let key in array) {
+                drawRemainder(array[key], key);
+            }
         }
-
-
     } else {
-      restriction.focus();
-      document.querySelector('form input[name=newTime]').value = '';
-      document.querySelector('form input[name=heading]').value = '';
-      document.querySelector('form textarea[name=desc]').value = '';
-
-
-
+        restriction.focus();
+        restriction.setAttribute("min", `${new Date(today)}`);
+        document.querySelector('form input[name=newTime]').value = '';
+        document.querySelector('form input[name=heading]').value = '';
+        document.querySelector('form textarea[name=desc]').value = '';
     }
-
 }
 
-
-function drawRemainder() {
+function drawRemainder(inside, box) {
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
     if (document.documentElement.clientWidth <= 414) {
@@ -211,14 +222,13 @@ function drawRemainder() {
         listReminder.style.width = 348 * .75 + 'px';
     }
 
-
     let reminderItemText = document.createElement('div');
     reminderItemText.classList.add('reminderItemText');
     reminder.append(reminderItemText);
 
     let h2 = document.createElement('h3');
     h2.classList.add('reminderH2');
-    h2.innerText = testObj.heading;
+    h2.innerText = inside.heading;
     reminderItemText.append(h2);
 
 
@@ -228,7 +238,7 @@ function drawRemainder() {
 
     let desc = document.createElement('p');
     desc.classList.add('reminderDesc');
-    desc.innerText = testObj.description;
+    desc.innerText = inside.description;
     reminderDescription.append(desc);
 
 
@@ -242,20 +252,22 @@ function drawRemainder() {
     reminderItemData.append(reminderCheck);
 
     let inputImg = document.createElement('input');
-    inputImg.id = 'idImg';
+    inputImg.id = 'idImg' + box;
+    inputImg.classList.add('' + box);
     inputImg.type = 'checkbox';
     reminderCheck.append(inputImg);
 
     let labelImg = document.createElement('label');
     labelImg.classList.add('labelImg');
-    labelImg.setAttribute('for', 'idImg');
-    if (testObj.dane === true) {
-        inputImg.checked = false;
-    } else {
+    labelImg.setAttribute('for', 'idImg' + box);
+    if (inside.dane === true) {
         inputImg.checked = true;
+        labelImg.style.backgroundImage = "url('image/checked.png')";
+    } else {
+        inputImg.checked = false;
+        labelImg.style.backgroundImage = "url('image/unchecked.png')";
     }
     reminderCheck.append(labelImg);
-
 
     let reminderTimeTo = document.createElement("div");
     reminderTimeTo.classList.add('reminderTimeTo');
@@ -267,24 +279,44 @@ function drawRemainder() {
 
     let timerTime = document.createElement('span');
     timerTime.classList.add('timerTime');
-    if (new Date(JSON.parse(testObj.dateEnd)).getMinutes() < 10) {
-        if (new Date(JSON.parse(testObj.dateEnd)).getHours() < 10) {
-            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+    if (new Date(JSON.parse(inside.dateEnd)).getMinutes() < 10) {
+        if (new Date(JSON.parse(inside.dateEnd)).getHours() < 10) {
+            timerTime.innerText = '0' + new Date(JSON.parse(inside.dateEnd)).getHours() + ':0' + new Date(JSON.parse(inside.dateEnd)).getMinutes();
         } else {
-            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':0' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+            timerTime.innerText = new Date(JSON.parse(inside.dateEnd)).getHours() + ':0' + new Date(JSON.parse(inside.dateEnd)).getMinutes();
         }
     } else {
-        if (new Date(JSON.parse(testObj.dateEnd)).getHours() < 10) {
-            timerTime.innerText = '0' + new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+        if (new Date(JSON.parse(inside.dateEnd)).getHours() < 10) {
+            timerTime.innerText = '0' + new Date(JSON.parse(inside.dateEnd)).getHours() + ':' + new Date(JSON.parse(inside.dateEnd)).getMinutes();
         } else {
-            timerTime.innerText = new Date(JSON.parse(testObj.dateEnd)).getHours() + ':' + new Date(JSON.parse(testObj.dateEnd)).getMinutes();
+            timerTime.innerText = new Date(JSON.parse(inside.dateEnd)).getHours() + ':' + new Date(JSON.parse(inside.dateEnd)).getMinutes();
         }
 
     }
     reminderTimeTo.append(timerTime);
-
     listReminder.append(reminder);
 }
+
+let indexInput;
+listReminder.addEventListener('click', (e) => {
+    let lookingForInput = e.target;
+   indexInput = lookingForInput.parentNode.children[0].className;
+    changeCheckbox();
+});
+function changeCheckbox(){
+    if (array[indexInput].dane === false){
+        array[indexInput].dane = true;
+    } else{
+        array[indexInput].dane = false;
+    }
+    localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()), JSON.stringify(array));
+    listReminder.innerHTML = '';
+    for (let key in array) {
+        drawRemainder(array[key], key);
+    }
+}
+
+
 
 
 
