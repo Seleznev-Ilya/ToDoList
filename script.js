@@ -162,9 +162,13 @@ function changeMainButton() {
 }
 
 let array = [];
-
+let deletLocal = function () {
+        localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()));
+};
+// deletLocal();
+console.log( localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())));
 function newDayDrawIt() {
-    if (JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()))) !== undefined) {
+    if (localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())) !== null) {
         array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())));
         for (let key in array) {
             drawRemainder(array[key], key);
