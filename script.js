@@ -71,25 +71,26 @@ function visualizationDates() {
 
     function emphasizeLastDays() {
         for (let i = 0; i < week.length; i++) {
-            if (today.getDay() === 0) {
-                if (i < 7) {
+            // console.log( new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate());
+            // if (today.getDay() !== 0) {
+                if (i < today.getDay() || i === 7 || i === 8) {
                     document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
                     document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
                     document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
                 }
-            } else if (today.getDay() === 1) {
-                if (i < 8) {
-                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-                }
-            } else {
-                if (i < today.getDay()) {
-                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-                }
-            }
+            // } else if (today.getDay() === 1) {
+            //     if (i < 8) {
+            //         document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+            //         document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+            //         document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+            //     }
+            // } else {
+            //     if (i < today.getDay()) {
+            //         document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+            //         document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+            //         document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+            //     }
+            // }
         }
     }
 
@@ -203,6 +204,7 @@ wrapperDate.addEventListener('click', (event) => {
 
             if (localStorage.getItem(JSON.stringify(targetDataSetStore)) !== null) {
                 console.log('good');
+                array = null;
                 array = JSON.parse(localStorage.getItem(JSON.stringify(targetDataSetStore)));
                 listReminder.innerHTML = '';
                 // massageDelete();
@@ -266,6 +268,7 @@ function getDataForm() {
             listReminder.innerHTML = '';
 
             array.push(testObj);
+            // тут бать дату, с введенного поля и доставать оттуда даты для токал сториджа
             localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
 
             for (let key in array) {
@@ -274,7 +277,7 @@ function getDataForm() {
         }
     } else {
         restriction.focus();
-        // restriction.setAttribute("min", `${new Date(today)}`);
+        // restriction.setAttribute("min", today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + 'T08:30');
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';

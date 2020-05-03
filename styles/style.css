@@ -352,6 +352,7 @@ header {
     position: absolute;
     top: 40%;
     left: calc(50% - 140px);
+    width: fit-content;
 }
 
 .main__form form {
@@ -384,14 +385,16 @@ input:required {
 }
 
 #heading:invalid + span:after {
-    content: '⚐';
+    /*content: '⚐';*/
+    content: '✧';
     position: absolute;
     top: 0;
     left: -17px;
 }
 
 #heading:valid + span:after {
-    content: '⚑';
+    /*content: '⚑';*/
+    content: '✦';
     position: absolute;
     top: 0;
     left: -17px;
