@@ -20,10 +20,6 @@ window.onresize = function () {
 
 function visualizationDates() {
     function drawDates() {
-        let k = 0;
-
-        // let storeDateKey = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (k) * 24 * 3600 * 1000);
-
         for (let i = 0; i < week.length; i++) {
             let dayItem = document.createElement('div');
             dayItem.classList.add('week_day');
@@ -94,7 +90,6 @@ function visualizationDates() {
                     document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
                 }
             }
-
         }
     }
 
@@ -200,6 +195,28 @@ function changeMainButton() {
 }
 
 let array = [];
+wrapperDate.addEventListener('click', (event) => {
+    let otherDay = event.target;
+    for (let i = 0; i < week.length; i++) {
+        if (otherDay.closest(`.week_day${i}`)) {
+            let targetDataSetStore =  document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates;
+
+            if (localStorage.getItem(JSON.stringify(targetDataSetStore)) !== null) {
+                console.log('good');
+                array = JSON.parse(localStorage.getItem(JSON.stringify(targetDataSetStore)));
+                listReminder.innerHTML = '';
+                // massageDelete();
+                for (let key in array) {
+                    drawRemainder(array[key], key);
+                }
+            } else {
+                listReminder.innerHTML = '';
+                alert('тут пусто :(')
+            }
+        }
+    }
+});
+
 
 function deletLocal() {
     localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()));
@@ -227,6 +244,7 @@ let restriction = document.querySelector('.selectTime');
 let form = document.querySelector('form');
 mainButton.addEventListener('click', getDataForm);
 mainButton.addEventListener('click', massageDelete);
+
 function massageDelete() {
     let massageDelete = document.querySelector('.emptyMassage');
     massageDelete.style.display = 'none';
@@ -256,13 +274,14 @@ function getDataForm() {
         }
     } else {
         restriction.focus();
-        restriction.setAttribute("min", `${new Date(today)}`);
+        // restriction.setAttribute("min", `${new Date(today)}`);
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
-document.addEventListener('keydown', function(event) {
+
+document.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
         openAddNew();
         changeMainButton();
@@ -271,6 +290,7 @@ document.addEventListener('keydown', function(event) {
 
     }
 });
+
 function drawRemainder(inside, box) {
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
@@ -289,7 +309,6 @@ function drawRemainder(inside, box) {
     h2.innerText = inside.heading;
     reminderItemText.append(h2);
 
-
     let reminderDescription = document.createElement("div");
     reminderDescription.classList.add('reminderDescContainer');
     reminderItemText.append(reminderDescription);
@@ -299,11 +318,9 @@ function drawRemainder(inside, box) {
     desc.innerText = inside.description;
     reminderDescription.append(desc);
 
-
     let reminderItemData = document.createElement('div');
     reminderItemData.classList.add('reminderItemData');
     reminder.append(reminderItemData);
-
 
     let reminderCheck = document.createElement("div");
     reminderCheck.classList.add('reminderCheck');

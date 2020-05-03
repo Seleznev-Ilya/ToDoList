@@ -193,7 +193,7 @@ input[type=checkbox] {
     border-radius: 25px;
     text-align: center;
     vertical-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .4);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .4);
 }
 
 .emptyMassage:after {
@@ -446,29 +446,22 @@ input:required {
 }
 
 .validity0 {
-
-
     font-size: 12px;
     vertical-align: center;
     display: none;
-
-
     position: absolute;
-
     top: -60px;
     left: 0px;
     color: grey;
-
     width: auto;
     height: 35px;
-
     border: 2px solid lightgrey;
     background-color: lightgrey;
     padding: 9px;
     border-radius: 25px;
     text-align: center;
     vertical-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
 }
 .validity0:after{
     position: absolute;
