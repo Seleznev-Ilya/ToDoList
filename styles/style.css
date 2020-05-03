@@ -18,7 +18,6 @@
     overflow: hidden;
     border-top-left-radius: 77px;
     position: relative;
-    /*background: rgba(3, 201, 169, .8);*/
     background: rgb(255, 255, 255);
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 44%, rgba(49, 233, 220, 0.8230479691876751) 100%);
 }
@@ -43,7 +42,6 @@
     flex-direction: column;
     position: absolute;
     top: 20px;
-
 }
 
 .reminderRelevant {
@@ -62,6 +60,16 @@
     justify-content: space-around;
     align-items: center;
     background-color: white;
+}
+
+.emptyBox__wrapper {
+    display: block;
+    width: 250px;
+    margin: 55% 3em 0 0;
+}
+
+.emptyBox__wrapper h2 {
+    color: lightgrey;
 }
 
 .reminderItemText {
@@ -107,7 +115,6 @@
     line-height: 62px;
     align-items: center;
     padding: 2px;
-
 }
 
 input[type=checkbox] {
@@ -120,6 +127,7 @@ input[type=checkbox] {
     width: 100%;
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: pointer;
 }
 
 
@@ -167,10 +175,47 @@ input[type=checkbox] {
     border: 4px double rgba(3, 201, 169, 1);
     background: white;
     box-shadow: 0 0 11px rgba(0, 0, 0, .7);
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
 }
 
-.main__button:active {
-    box-shadow: 0 0 11px rgba(0, 0, 0, .7), inset 0 0 30px rgba(3, 201, 169, 1);
+.emptyMassage {
+    position: absolute;
+    top: -82px;
+    left: -109px;
+    width: 150px;
+    height: 55px;
+    display: block;
+    border: 2px solid lightgrey;
+    background-color: lightgrey;
+    padding: 9px;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .4);
+}
+
+.emptyMassage:after {
+    position: absolute;
+    top: 20px;
+    left: 107px;
+    content: '';
+    border: 20px solid transparent;
+    border-bottom: 22px solid lightgrey;
+    transform: rotate(45deg);
+}
+
+.emptyMassage p {
+    margin: 0;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    color: grey;
+}
+
+.main__button:focus, .main__button:active {
+    box-shadow: 0 0 15px rgba(0, 0, 0, .7), inset 0 0 15px rgba(3, 201, 169, 1);
 }
 
 .main__button_before {
@@ -186,7 +231,6 @@ input[type=checkbox] {
     box-shadow: 0 0 4px -1px rgba(0, 0, 0, .3);
     opacity: 1;
     transition: .3s ease;
-
 }
 
 .main__button_after {
@@ -202,7 +246,6 @@ input[type=checkbox] {
     border-radius: 4px;
     background: tomato;
     box-shadow: 0 0 4px -1px rgba(0, 0, 0, .5);
-
 }
 
 .date {
@@ -233,6 +276,7 @@ input[type=checkbox] {
 
 .week_day {
     text-align: center;
+    cursor: pointer;
 }
 
 .week_day p {
@@ -268,6 +312,7 @@ input[type=checkbox] {
 }
 
 .date_today {
+    cursor: pointer;
     border-radius: 50%;
     box-shadow: 0 0 20px 4px rgba(3, 201, 169, 1);
 }
@@ -285,7 +330,6 @@ input[type=checkbox] {
     text-align: center;
     font-weight: bold;
     color: rgba(3, 201, 169, 1);
-
 }
 
 header {
@@ -295,7 +339,6 @@ header {
 
 .header__wrapper {
     width: 100%;
-
 }
 
 .list {
@@ -308,7 +351,7 @@ header {
 .main__form {
     position: absolute;
     top: 40%;
-    left: calc(50% - 150px);
+    left: calc(50% - 140px);
 }
 
 .main__form form {
@@ -332,7 +375,7 @@ input:required {
     left: 1px;
     border: none;
     background-color: transparent;
-    outline: 0;
+    outline: none;
     margin-bottom: 5px;
     max-width: content-box;
     display: none;
@@ -364,7 +407,7 @@ input:required {
     left: 0;
     top: 30px;
     display: none;
-    outline: 0;
+    outline: none;
     border: none;
     resize: none;
     background: transparent;
@@ -386,7 +429,7 @@ input:required {
     font-size: 22px;
     position: relative;
     top: -5px;
-    outline: 0;
+    outline: none;
     border: none;
     background: transparent;
     color: grey;
@@ -403,19 +446,38 @@ input:required {
 }
 
 .validity0 {
-    border: 3px double red;
-    padding: 2px;
+
+
     font-size: 12px;
-    /*line-height: 32px;*/
     vertical-align: center;
     display: none;
-    height: auto;
-    width: auto;
-    background-color: coral;
+
+
     position: absolute;
-    border-radius: 5px;
-    top: -30px;
+
+    top: -60px;
     left: 0px;
+    color: grey;
+
+    width: auto;
+    height: 35px;
+
+    border: 2px solid lightgrey;
+    background-color: lightgrey;
+    padding: 9px;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+}
+.validity0:after{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    content: '';
+    border: 12px solid transparent;
+    border-left: 12px solid lightgrey;
+    transform: rotate(-5deg);
 }
 
 .selectTime:invalid {

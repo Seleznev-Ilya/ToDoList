@@ -37,18 +37,25 @@
             <div class="main__form">
                <form>
                   <input class="selectTime" type="datetime-local" name="newTime" required  tabindex="1"><br>
-                  <span class="validity0">Set your <b>deadline</b></span>
+                  <span class="validity0">And <b>set</b> your <b>deadline</b> :)</span>
                   <input id = "heading" name = "heading" type = "text" placeholder = "Heading" maxlength="13" required tabindex="2">
                   <span class="validity"></span>
-                  <textarea id = "description" name = "desc" type = "text"  placeholder = "Description for your heading" maxlength="66" ></textarea>
+                  <textarea id = "description" name = "desc" type = "text"  placeholder = "Add description if you want ;)" maxlength="66" tabindex="3"></textarea>
                </form>
             </div>
 
             <div class = "main__list_container">
-               <div class = "list_reminder"></div>
+               <div class = "list_reminder">
+                  <div class="emptyBox__wrapper">
+                     <h2 class="emptyBoxText">Oops!<br> Your list is empty.</h2>
+                  </div>
+               </div>
             </div>
-            <div class = "main__button">
+            <div class = "main__button"  tabindex="4">
                <p class = "main__button_text hide">Submit</p>
+               <div class="emptyMassage" >
+                  <p>Click me to <b>add</b> <br>a <b>reminder</b> :)</p>
+               </div>
                <div class = "main__button_before"></div>
                <div class = "main__button_after"></div>
             </div>

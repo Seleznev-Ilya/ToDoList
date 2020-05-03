@@ -18,53 +18,92 @@ window.onresize = function () {
     }, 123);
 };
 
-function drawDates() {
-    let k = 0;
-    for (let i = 0; i < week.length; i++) {
-        let dayItem = document.createElement('div');
-        dayItem.classList.add('week_day');
-        dayItem.classList.add(`week_day${i}`);
-        if (document.documentElement.clientWidth <= 414) {
-            dayItem.style.width = document.documentElement.clientWidth / 3 + 'px';
-        } else if (document.documentElement.clientWidth > 414) {
-            dayItem.style.width = (348 / 3) + 'px';
+function visualizationDates() {
+    function drawDates() {
+        let k = 0;
+
+        // let storeDateKey = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (k) * 24 * 3600 * 1000);
+
+        for (let i = 0; i < week.length; i++) {
+            let dayItem = document.createElement('div');
+            dayItem.classList.add('week_day');
+            dayItem.classList.add(`week_day${i}`);
+            if (document.documentElement.clientWidth <= 414) {
+                dayItem.style.width = document.documentElement.clientWidth / 3 + 'px';
+            } else if (document.documentElement.clientWidth > 414) {
+                dayItem.style.width = (348 / 3) + 'px';
+            }
+            let day = document.createElement('p');
+            day.classList.add('day');
+            day.innerText = week[i];
+            let monthWrapper = document.createElement('div');
+            monthWrapper.classList.add('month_wrapper');
+            let month = document.createElement('p');
+            month.classList.add('month');
+            if (today.getDay() !== 0) {
+                month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate();
+                dayItem.dataset.storeDates =
+                    new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
+                    new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
+                    new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
+                    today.getFullYear();
+            } else {
+                month.innerText = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate();
+                dayItem.dataset.storeDates =
+                    new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
+                    new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
+                    new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
+                    today.getFullYear();
+            }
+            dayItem.append(day);
+            monthWrapper.append(month);
+            dayItem.append(monthWrapper);
+            wrapperDate.append(dayItem);
         }
-        let day = document.createElement('p');
-        day.classList.add('day');
-        day.innerText = week[i];
-        let monthWrapper = document.createElement('div');
-        monthWrapper.classList.add('month_wrapper');
-        let month = document.createElement('p');
-        month.classList.add('month');
-        if (today.getDay() !== 0) {
-            month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (k++) * 24 * 3600 * 1000).getDate();
-        } else {
-            month.innerText = new Date((today.getTime() - 8 * 24 * 3600 * 1000) + ((k++) + 1) * 24 * 3600 * 1000).getDate();
-        }
-        dayItem.append(day);
-        monthWrapper.append(month);
-        dayItem.append(monthWrapper);
-        wrapperDate.append(dayItem);
     }
+
+    function highlightDay() {
+        let thisDayWrapper = document.querySelector(".date__wrapper");
+        if (today.getDay() !== 0) {
+            thisDayWrapper.children[today.getDay()].children[1].style.fontWeight = 'bold';
+            thisDayWrapper.children[today.getDay()].style.color = 'Tomato';
+        } else {
+            thisDayWrapper.children[7].children[1].style.fontWeight = 'bold';
+            thisDayWrapper.children[7].style.color = 'Tomato';
+        }
+    }
+
+    function emphasizeLastDays() {
+        for (let i = 0; i < week.length; i++) {
+            if (today.getDay() === 0) {
+                if (i < 7) {
+                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+                }
+            } else if (today.getDay() === 1) {
+                if (i < 8) {
+                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+                }
+            } else {
+                if (i < today.getDay()) {
+                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+                }
+            }
+
+        }
+    }
+
+    drawDates();
+    emphasizeLastDays();
+    highlightDay();
 }
 
-function highlightDay() {
-    let thisDayWrapper = document.querySelector(".date__wrapper");
-    if (today.getDay() !== 0) {
-        thisDayWrapper.children[today.getDay()].children[1].style.fontWeight = 'bold';
-        thisDayWrapper.children[today.getDay()].style.color = 'Tomato';
-    } else {
-        thisDayWrapper.children[7].children[1].style.fontWeight = 'bold';
-        thisDayWrapper.children[7].style.color = 'Tomato';
-    }
-    for (let i = 0; i < week.length; i++) {
-        if (i < today.getDay()) {
-            document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-            document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-            document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-        }
-    }
-}
+visualizationDates();
 
 function moveRelevantDate() {
     if (document.documentElement.clientWidth <= 414) {
@@ -82,8 +121,6 @@ function moveRelevantDate() {
     }
 }
 
-drawDates();
-highlightDay();
 moveRelevantDate();
 wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
@@ -97,6 +134,7 @@ wrapperDate.addEventListener('click', (event) => {
             }
         }
     }
+
 });
 buttonTodayL.addEventListener('click', moveRelevantDate);
 buttonTodayR.addEventListener('click', moveRelevantDate);
@@ -162,14 +200,17 @@ function changeMainButton() {
 }
 
 let array = [];
-let deletLocal = function () {
-        localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()));
-};
-// deletLocal();
-console.log( localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())));
+
+function deletLocal() {
+    localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()));
+}; // deletLocal();
+
 function newDayDrawIt() {
-    if (localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())) !== null) {
-        array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay())));
+
+    if (localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())) !== null) {
+        array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
+        listReminder.innerHTML = '';
+        massageDelete();
         for (let key in array) {
             drawRemainder(array[key], key);
         }
@@ -185,6 +226,11 @@ let testObj;
 let restriction = document.querySelector('.selectTime');
 let form = document.querySelector('form');
 mainButton.addEventListener('click', getDataForm);
+mainButton.addEventListener('click', massageDelete);
+function massageDelete() {
+    let massageDelete = document.querySelector('.emptyMassage');
+    massageDelete.style.display = 'none';
+}
 
 function getDataForm() {
     if (buttonSwitchTwo === 0) {
@@ -202,7 +248,7 @@ function getDataForm() {
             listReminder.innerHTML = '';
 
             array.push(testObj);
-            localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()), JSON.stringify(array));
+            localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
 
             for (let key in array) {
                 drawRemainder(array[key], key);
@@ -216,7 +262,15 @@ function getDataForm() {
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Enter') {
+        openAddNew();
+        changeMainButton();
+        massageDelete();
+        getDataForm()
 
+    }
+});
 function drawRemainder(inside, box) {
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
@@ -304,19 +358,20 @@ function drawRemainder(inside, box) {
 let indexInput;
 listReminder.addEventListener('click', (e) => {
     let lookingForInput = e.target;
-   indexInput = lookingForInput.parentNode.children[0].className;
+    indexInput = lookingForInput.parentNode.children[0].className;
     changeCheckbox();
 });
-function changeCheckbox(){
-    if (array[indexInput].dane === false){
+
+function changeCheckbox() {
+    if (array[indexInput].dane === false) {
         array[indexInput].dane = true;
-    } else{
+    } else {
         array[indexInput].dane = false;
     }
-    localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay()), JSON.stringify(array));
+    localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
     listReminder.innerHTML = '';
-    for (let key in array) {
-        drawRemainder(array[key], key);
+    for (let check in array) {
+        drawRemainder(array[check], check);
     }
 }
 
