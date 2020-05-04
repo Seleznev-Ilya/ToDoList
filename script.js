@@ -10,11 +10,15 @@ let time,
         }
         timer = setTimeout(step, 1000);
     }, 1000);
+let documentWidth = document.documentElement.clientWidth;
 window.onresize = function () {
     if (time)
         clearTimeout(time);
     time = setTimeout(function () {
-        // location.reload();
+        if(documentWidth !== document.documentElement.clientWidth){
+            location.reload();
+        }
+
     }, 123);
 };
 
