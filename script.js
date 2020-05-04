@@ -69,7 +69,7 @@ function visualizationDates() {
 
     function emphasizeLastDays() {
         for (let i = 0; i < week.length; i++) {
-            if (i < today.getDay() || i === 7 || i === 8) {
+            if (i < today.getDay() && i < 7 || i < today.getDay() && i < 8) {
                 document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
                 document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
                 document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
@@ -184,7 +184,7 @@ wrapperDate.addEventListener('click', (event) => {
                 }
             } else {
                 listReminder.innerHTML = '';
-                alert('тут пусто :(')
+                // alert('тут пусто :(')
             }
         }
     }
