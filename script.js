@@ -235,10 +235,25 @@ function getDataForm() {
             listReminder.innerHTML = '';
             array.push(testObj);
             console.log(  testObj.dateEnd);
-            // тут бать дату, с введенного поля и доставать оттуда даты для токал сториджа
+            let addReminder = new Date(JSON.parse( testObj.dateEnd));
 
-            localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
-
+            localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(array));
+            moveAddedDate();
+            function moveAddedDate() {
+                if (document.documentElement.clientWidth <= 414) {
+                    if (today.getDay() !== 0) {
+                        containerDate.style.left = (-addReminder.getDay() + 1) * (document.documentElement.clientWidth / 3) + 'px';
+                    } else {
+                        containerDate.style.left = (-document.documentElement.clientWidth / 3) * 6 + 'px';
+                    }
+                } else if (document.documentElement.clientWidth > 414) {
+                    if (today.getDay() !== 0) {
+                        containerDate.style.left = (-addReminder.getDay() + 1) * (348 / 3) + 'px';
+                    } else {
+                        containerDate.style.left = (-348 / 3) * 6 + 'px';
+                    }
+                }
+            }
             for (let key in array) {
                 drawRemainder(array[key], key);
             }
@@ -250,13 +265,17 @@ function getDataForm() {
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
+// mainButton.addEventListener('click', moveAddedDate);
+
+
 
 document.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
         openAddNew();
         changeMainButton();
         massageDelete();
-        getDataForm()
+        getDataForm();
+        // moveAddedDate();
     }
 });
 
@@ -304,7 +323,7 @@ function drawRemainder(inside, box) {
     let labelImg = document.createElement('label');
     labelImg.classList.add('labelImg');
     labelImg.setAttribute('for', 'idImg' + box);
-    labelImg.dataset.dateLable = inside.date ;
+    labelImg.dataset.dateLable = inside.dateEnd ;
     if (inside.dane === true) {
         inputImg.checked = true;
         labelImg.style.backgroundImage = "url('image/checked.png')";
