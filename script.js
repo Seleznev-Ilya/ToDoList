@@ -300,6 +300,7 @@ function drawRemainder(inside, box) {
     let labelImg = document.createElement('label');
     labelImg.classList.add('labelImg');
     labelImg.setAttribute('for', 'idImg' + box);
+    labelImg.dataset.dateLable = inside.date ;
     if (inside.dane === true) {
         inputImg.checked = true;
         labelImg.style.backgroundImage = "url('image/checked.png')";
@@ -336,23 +337,29 @@ function drawRemainder(inside, box) {
     listReminder.append(reminder);
 }
 
-let indexInput;
+let indexInput, dataLable;
 listReminder.addEventListener('click', (e) => {
     let lookingForInput = e.target;
     indexInput = lookingForInput.parentNode.children[0].className;
-    changeCheckbox();
+    dataLable = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
+    console.log(dataLable.getDate());
+    changeCheckbox(dataLable);
 });
 
-function changeCheckbox() {
-    if (array[indexInput].dane === false) {
-        array[indexInput].dane = true;
+function changeCheckbox(dates) {
+    let array2 = JSON.parse(localStorage.getItem(JSON.stringify(dates.getDate() + ' ' + dates.getMonth() + ' ' + dates.getDay() + ' ' + dates.getFullYear())));
+    console.log( array2);
+    if (array2[indexInput].dane === false) {
+        array2[indexInput].dane = true;
     } else {
-        array[indexInput].dane = false;
+        array2[indexInput].dane = false;
     }
-    localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
+    // нужно вставлять дату, от которой было нажатие - так как переводит на отрисовку сегодняшнего дня
+    localStorage.setItem(JSON.stringify(dates.getDate() + ' ' + dates.getMonth() + ' ' + dates.getDay() + ' ' + dates.getFullYear()), JSON.stringify(array2));
+
     listReminder.innerHTML = '';
-    for (let check in array) {
-        drawRemainder(array[check], check);
+    for (let check in array2) {
+        drawRemainder(array2[check], check);
     }
 }
 
