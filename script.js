@@ -38,15 +38,13 @@ function visualizationDates() {
             month.classList.add('month');
             if (today.getDay() !== 0) {
                 month.innerText = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate();
-                dayItem.dataset.storeDates =
-                    new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
+                dayItem.dataset.storeDates = new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
                     new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
                     new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
                     today.getFullYear();
             } else {
                 month.innerText = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate();
-                dayItem.dataset.storeDates =
-                    new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
+                dayItem.dataset.storeDates = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
                     new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
                     new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
                     today.getFullYear();
@@ -71,26 +69,11 @@ function visualizationDates() {
 
     function emphasizeLastDays() {
         for (let i = 0; i < week.length; i++) {
-            // console.log( new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate());
-            // if (today.getDay() !== 0) {
-                if (i < today.getDay() || i === 7 || i === 8) {
-                    document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-                    document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-                }
-            // } else if (today.getDay() === 1) {
-            //     if (i < 8) {
-            //         document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-            //         document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-            //         document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-            //     }
-            // } else {
-            //     if (i < today.getDay()) {
-            //         document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
-            //         document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
-            //         document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
-            //     }
-            // }
+            if (i < today.getDay() || i === 7 || i === 8) {
+                document.querySelector(".date__wrapper").children[i].children[0].style.color = 'grey';
+                document.querySelector(".date__wrapper").children[i].children[1].style.color = 'grey';
+                document.querySelector(".date__wrapper").children[i].children[1].style.border = 2 + 'px ' + 'solid ' + 'grey';
+            }
         }
     }
 
@@ -130,22 +113,16 @@ wrapperDate.addEventListener('click', (event) => {
             }
         }
     }
-
 });
 buttonTodayL.addEventListener('click', moveRelevantDate);
 buttonTodayR.addEventListener('click', moveRelevantDate);
-
-let mainButton = document.querySelector('.main__button');
-let mainList = document.querySelector('.main__list_container');
-let listReminder = document.querySelector('.list_reminder');
-
+let mainButton = document.querySelector('.main__button'), mainList = document.querySelector('.main__list_container'),
+    listReminder = document.querySelector('.list_reminder');
 mainButton.addEventListener('click', openAddNew);
 mainButton.addEventListener('click', changeMainButton);
-
 let buttonSwitch = 0, buttonSwitchTwo = 0;
 
 function openAddNew() {
-
     if (buttonSwitch === 0) {
         if (document.documentElement.clientWidth <= 414) {
             mainList.style.left = document.documentElement.clientWidth * 0.9 + 'px';
@@ -163,7 +140,6 @@ function changeMainButton() {
     let crossOne = document.querySelector('.main__button_before');
     let crossTwo = document.querySelector('.main__button_after');
     let buttonSubmit = document.querySelector('.main__button_text');
-
     if (buttonSwitchTwo === 0) {
         crossOne.style.opacity = 0;
         crossTwo.style.opacity = 0;
@@ -177,7 +153,6 @@ function changeMainButton() {
         setTimeout(() => {
             buttonSubmit.style.fontSize = 23 + 'px';
         }, 200);
-
         buttonSwitchTwo = 1;
     } else {
         setTimeout(() => {
@@ -190,7 +165,6 @@ function changeMainButton() {
         crossTwo.style.display = 'block';
         buttonSubmit.style.opacity = 0;
         buttonSubmit.style.fontSize = 14 + 'px';
-
         buttonSwitchTwo = 0;
     }
 }
@@ -200,14 +174,11 @@ wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
     for (let i = 0; i < week.length; i++) {
         if (otherDay.closest(`.week_day${i}`)) {
-            let targetDataSetStore =  document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates;
-
+            let targetDataSetStore = document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates;
             if (localStorage.getItem(JSON.stringify(targetDataSetStore)) !== null) {
-                console.log('good');
-                array = null;
+                let array = [];
                 array = JSON.parse(localStorage.getItem(JSON.stringify(targetDataSetStore)));
                 listReminder.innerHTML = '';
-                // massageDelete();
                 for (let key in array) {
                     drawRemainder(array[key], key);
                 }
@@ -219,21 +190,15 @@ wrapperDate.addEventListener('click', (event) => {
     }
 });
 
-
 function deletLocal() {
     localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()));
 }; // deletLocal();
 
 function newDayDrawIt() {
-
     if (localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())) !== null) {
         array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
         listReminder.innerHTML = '';
         massageDelete();
-        for (let key in array) {
-            drawRemainder(array[key], key);
-        }
-    } else {
         for (let key in array) {
             drawRemainder(array[key], key);
         }
@@ -251,7 +216,6 @@ function massageDelete() {
     let massageDelete = document.querySelector('.emptyMassage');
     massageDelete.style.display = 'none';
 }
-
 function getDataForm() {
     if (buttonSwitchTwo === 0) {
         function Reminder(dateEnd, heading, description) {
@@ -263,12 +227,12 @@ function getDataForm() {
         }
 
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
-
         if (!form.children[0].value == '' && !form.children[3].value == '') {
             listReminder.innerHTML = '';
-
             array.push(testObj);
+            console.log(  testObj.dateEnd);
             // тут бать дату, с введенного поля и доставать оттуда даты для токал сториджа
+
             localStorage.setItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()), JSON.stringify(array));
 
             for (let key in array) {
@@ -277,7 +241,6 @@ function getDataForm() {
         }
     } else {
         restriction.focus();
-        // restriction.setAttribute("min", today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + 'T08:30');
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
@@ -290,7 +253,6 @@ document.addEventListener('keydown', function (event) {
         changeMainButton();
         massageDelete();
         getDataForm()
-
     }
 });
 
@@ -369,7 +331,6 @@ function drawRemainder(inside, box) {
         } else {
             timerTime.innerText = new Date(JSON.parse(inside.dateEnd)).getHours() + ':' + new Date(JSON.parse(inside.dateEnd)).getMinutes();
         }
-
     }
     reminderTimeTo.append(timerTime);
     listReminder.append(reminder);
