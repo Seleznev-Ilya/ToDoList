@@ -287,12 +287,21 @@ function getDataForm() {
         }
     } else {
         restriction.focus();
+        let allDatesFromWeak2 = document.querySelectorAll('.week_day');
+        let lastDayInRow = allDatesFromWeak2[8].dataset.storeDates;
+        let lastDateInput = lastDayInRow.slice(0, lastDayInRow.indexOf(' '));
+        restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+        if( lastDateInput < 10){
+            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '00:00'}`);
+        } else{
+            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '00:00'}`);
+        }
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
-
+console.log( JSON.stringify(today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + today.getDate() + 'T' + '00:00'));
 // mainButton.addEventListener('click', moveAddedDate);
 
 
