@@ -15,7 +15,7 @@ window.onresize = function () {
     if (time)
         clearTimeout(time);
     time = setTimeout(function () {
-        if(documentWidth !== document.documentElement.clientWidth){
+        if (documentWidth !== document.documentElement.clientWidth) {
             location.reload();
         }
 
@@ -46,12 +46,14 @@ function visualizationDates() {
                     new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
                     new Date((today.getTime() - today.getDay() * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
                     today.getFullYear();
+                dayItem.dataset.day = i;
             } else {
                 month.innerText = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate();
                 dayItem.dataset.storeDates = new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDate() + ' ' +
                     new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getMonth() + ' ' +
                     new Date((today.getTime() - 7 * 24 * 3600 * 1000) + (i) * 24 * 3600 * 1000).getDay() + ' ' +
                     today.getFullYear();
+                dayItem.dataset.day = i;
             }
             dayItem.append(day);
             monthWrapper.append(month);
@@ -102,9 +104,15 @@ function moveRelevantDate() {
             containerDate.style.left = (-348 / 3) * 6 + 'px';
         }
     }
+    let arrayMove = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
+    listReminder.innerHTML = '';
+    // massageDelete();
+    for (let key in arrayMove) {
+        drawRemainder(arrayMove[key], key);
+    }
 }
 
-moveRelevantDate();
+
 wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
     for (let i = 0; i < week.length; i++) {
@@ -125,6 +133,7 @@ let mainButton = document.querySelector('.main__button'), mainList = document.qu
 mainButton.addEventListener('click', openAddNew);
 mainButton.addEventListener('click', changeMainButton);
 let buttonSwitch = 0, buttonSwitchTwo = 0;
+moveRelevantDate();
 
 function openAddNew() {
     if (buttonSwitch === 0) {
@@ -173,22 +182,22 @@ function changeMainButton() {
     }
 }
 
-let array = [];
+// let array = [];
 wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
     for (let i = 0; i < week.length; i++) {
         if (otherDay.closest(`.week_day${i}`)) {
             let targetDataSetStore = document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates;
             if (localStorage.getItem(JSON.stringify(targetDataSetStore)) !== null) {
-                let array = [];
-                array = JSON.parse(localStorage.getItem(JSON.stringify(targetDataSetStore)));
+                let arrayWeek = [];
+                arrayWeek = JSON.parse(localStorage.getItem(JSON.stringify(targetDataSetStore)));
                 listReminder.innerHTML = '';
-                for (let key in array) {
-                    drawRemainder(array[key], key);
+                for (let key in arrayWeek) {
+                    drawRemainder(arrayWeek[key], key);
                 }
             } else {
                 listReminder.innerHTML = '';
-                // alert('тут пусто :(')
+                // добавлять надпись, что открывается в начале пустого документа, но это не первоочередно
             }
         }
     }
@@ -207,20 +216,25 @@ function newDayDrawIt() {
             drawRemainder(array[key], key);
         }
     }
-}
+} // newDayDrawIt();
 
-newDayDrawIt();
+
 let testObj;
 let restriction = document.querySelector('.selectTime');
 let form = document.querySelector('form');
-mainButton.addEventListener('click', getDataForm);
+// let array = [];
+// console.log(array);
 mainButton.addEventListener('click', massageDelete);
 
 function massageDelete() {
     let massageDelete = document.querySelector('.emptyMassage');
     massageDelete.style.display = 'none';
 }
+
+mainButton.addEventListener('click', getDataForm);
+let array =[];
 function getDataForm() {
+
     if (buttonSwitchTwo === 0) {
         function Reminder(dateEnd, heading, description) {
             this.dane = false;
@@ -231,32 +245,68 @@ function getDataForm() {
         }
 
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
+
         if (!form.children[0].value == '' && !form.children[3].value == '') {
             listReminder.innerHTML = '';
-            array.push(testObj);
-            console.log(  testObj.dateEnd);
-            let addReminder = new Date(JSON.parse( testObj.dateEnd));
+            let addReminder = new Date(JSON.parse(testObj.dateEnd));
 
-            localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(array));
+            if (localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())) !== null) {
+
+                let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' +
+                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
+                arrayDateFrom.push(testObj);
+
+                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
+                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
+                    addReminder.getFullYear()), JSON.stringify(arrayDateFrom));
+                // listReminder.innerHTML = '';
+
+                for (let key in arrayDateFrom) {
+                    drawRemainder(arrayDateFrom[key], key);
+                }
+
+            } else {
+                // listReminder.innerHTML = '';
+                array.push(testObj);
+                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
+                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
+                    addReminder.getFullYear()), JSON.stringify(array));
+
+                for (let key in array) {
+                    drawRemainder(array[key], key);
+                }
+
+                array.length = 0;
+            }
+
+
+            // array.push(testObj);
+            // localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
+            //     addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
+            //     addReminder.getFullYear()), JSON.stringify(array));
+
             moveAddedDate();
+
             function moveAddedDate() {
-                if (document.documentElement.clientWidth <= 414) {
-                    if (today.getDay() !== 0) {
-                        containerDate.style.left = (-addReminder.getDay() + 1) * (document.documentElement.clientWidth / 3) + 'px';
-                    } else {
-                        containerDate.style.left = (-document.documentElement.clientWidth / 3) * 6 + 'px';
-                    }
-                } else if (document.documentElement.clientWidth > 414) {
-                    if (today.getDay() !== 0) {
-                        containerDate.style.left = (-addReminder.getDay() + 1) * (348 / 3) + 'px';
-                    } else {
-                        containerDate.style.left = (-348 / 3) * 6 + 'px';
+                let allDatesFromWeak = document.querySelectorAll('.week_day');
+                let comparisonDate = addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear();
+                for (let day of allDatesFromWeak) {
+                    if (day.dataset.storeDates === comparisonDate) {
+                        let currentInfo = day.dataset.day;
+                        if (document.documentElement.clientWidth <= 414) {
+                            containerDate.style.left = (-currentInfo + 1) * (document.documentElement.clientWidth / 3) + 'px';
+                        } else if (document.documentElement.clientWidth > 414) {
+                            containerDate.style.left = (-currentInfo + 1) * (348 / 3) + 'px';
+                        }
                     }
                 }
             }
-            for (let key in array) {
-                drawRemainder(array[key], key);
-            }
+            // console.log(array, '<---|');
+            // let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
+            // console.log(arrayDateFrom, '<---|-|-|');
+            // for (let key in arrayDateFrom) {
+            //     drawRemainder(arrayDateFrom[key], key);
+            // }
         }
     } else {
         restriction.focus();
@@ -265,8 +315,8 @@ function getDataForm() {
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
-// mainButton.addEventListener('click', moveAddedDate);
 
+// mainButton.addEventListener('click', moveAddedDate);
 
 
 document.addEventListener('keydown', function (event) {
@@ -275,7 +325,7 @@ document.addEventListener('keydown', function (event) {
         changeMainButton();
         massageDelete();
         getDataForm();
-        // moveAddedDate();
+        // moveAddedDate(); добавить замыкание, для обращения к getDataForm()  функции
     }
 });
 
@@ -323,7 +373,7 @@ function drawRemainder(inside, box) {
     let labelImg = document.createElement('label');
     labelImg.classList.add('labelImg');
     labelImg.setAttribute('for', 'idImg' + box);
-    labelImg.dataset.dateLable = inside.dateEnd ;
+    labelImg.dataset.dateLable = inside.dateEnd;
     if (inside.dane === true) {
         inputImg.checked = true;
         labelImg.style.backgroundImage = "url('image/checked.png')";
@@ -365,13 +415,11 @@ listReminder.addEventListener('click', (e) => {
     let lookingForInput = e.target;
     indexInput = lookingForInput.parentNode.children[0].className;
     dataLable = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
-    console.log(dataLable.getDate());
     changeCheckbox(dataLable);
 });
 
 function changeCheckbox(dates) {
     let array2 = JSON.parse(localStorage.getItem(JSON.stringify(dates.getDate() + ' ' + dates.getMonth() + ' ' + dates.getDay() + ' ' + dates.getFullYear())));
-    console.log( array2);
     if (array2[indexInput].dane === false) {
         array2[indexInput].dane = true;
     } else {
