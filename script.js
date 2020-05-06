@@ -249,44 +249,27 @@ function getDataForm() {
         if (!form.children[0].value == '' && !form.children[3].value == '') {
             listReminder.innerHTML = '';
             let addReminder = new Date(JSON.parse(testObj.dateEnd));
-
             if (localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())) !== null) {
-
                 let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' +
                     addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
                 arrayDateFrom.push(testObj);
-
                 localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
                     addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
                     addReminder.getFullYear()), JSON.stringify(arrayDateFrom));
-                // listReminder.innerHTML = '';
-
                 for (let key in arrayDateFrom) {
                     drawRemainder(arrayDateFrom[key], key);
                 }
-
             } else {
-                // listReminder.innerHTML = '';
                 array.push(testObj);
                 localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
                     addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
                     addReminder.getFullYear()), JSON.stringify(array));
-
                 for (let key in array) {
                     drawRemainder(array[key], key);
                 }
-
                 array.length = 0;
             }
-
-
-            // array.push(testObj);
-            // localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
-            //     addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
-            //     addReminder.getFullYear()), JSON.stringify(array));
-
             moveAddedDate();
-
             function moveAddedDate() {
                 let allDatesFromWeak = document.querySelectorAll('.week_day');
                 let comparisonDate = addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear();
@@ -301,12 +284,6 @@ function getDataForm() {
                     }
                 }
             }
-            // console.log(array, '<---|');
-            // let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
-            // console.log(arrayDateFrom, '<---|-|-|');
-            // for (let key in arrayDateFrom) {
-            //     drawRemainder(arrayDateFrom[key], key);
-            // }
         }
     } else {
         restriction.focus();
