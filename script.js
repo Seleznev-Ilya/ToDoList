@@ -292,9 +292,9 @@ function getDataForm() {
         let lastDateInput = lastDayInRow.slice(0, lastDayInRow.indexOf(' '));
         restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
         if( lastDateInput < 10){
-            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '00:00'}`);
+            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
         } else{
-            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '00:00'}`);
+            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
         }
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
