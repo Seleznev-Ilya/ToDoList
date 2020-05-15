@@ -290,7 +290,12 @@ function getDataForm() {
         let allDatesFromWeak2 = document.querySelectorAll('.week_day');
         let lastDayInRow = allDatesFromWeak2[8].dataset.storeDates;
         let lastDateInput = lastDayInRow.slice(0, lastDayInRow.indexOf(' '));
-        restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+        if( lastDateInput < 10){
+            restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+        } else{
+            restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+        }
+
         if( lastDateInput < 10){
             restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
         } else{
