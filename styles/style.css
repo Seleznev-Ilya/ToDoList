@@ -372,7 +372,7 @@ input:required {
 
 #heading {
     position: relative;
-    top: -47px;
+    top: -58px;
     left: 1px;
     border: none;
     background-color: transparent;
@@ -408,7 +408,7 @@ input:required {
     padding: 5px 0;
     position: absolute;
     left: 0;
-    top: 30px;
+    top: 33px;
     display: none;
     outline: none;
     border: none;
@@ -483,7 +483,7 @@ input:required {
 }
 
 .selectTime:valid {
-    top: -30px;
+    top: -37px;
     font-size: 14px;
 }
 
