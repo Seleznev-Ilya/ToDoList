@@ -217,6 +217,7 @@ function newDayDrawIt() {
 
 let testObj;
 let restriction = document.querySelector('.selectTime');
+// restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + (today.getHours() + 1) + ':' + (today.getMinutes())}`);
 let form = document.querySelector('form');
 mainButton.addEventListener('click', massageDelete);
 
@@ -313,6 +314,7 @@ function getDataForm() {
                 restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
             }
         }
+
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
@@ -353,6 +355,7 @@ function openWindow() {
             restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
         }
     }
+    
     // document.querySelector('form input[name=newTime]').value = '';
     // document.querySelector('form input[name=heading]').value = '';
     // document.querySelector('form textarea[name=desc]').value = '';
