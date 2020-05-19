@@ -332,18 +332,18 @@ function openWindow() {
     if (lastDateInput < 10) {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
         }
     } else {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
         }
     }
     if (lastDateInput < 10) {
