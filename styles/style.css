@@ -437,6 +437,7 @@ input:required {
     background: transparent;
     color: grey;
     width: 240px;
+    min-height: 33px;
 }
 
 .selectTime:valid ~ #heading {
