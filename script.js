@@ -3,14 +3,13 @@ const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon'],
     buttonTodayL = document.querySelector('.date_left_today'),
     buttonTodayR = document.querySelector('.date_right_today'),
     today = new Date();
-let time,
-    timer = setTimeout(function step() {
-        if (today.getHours() === 23 && today.getMinutes() === 59) {
-            setTimeout(location.reload(), 59500);
-        }
-        timer = setTimeout(step, 1000);
-    }, 1000);
-let documentWidth = document.documentElement.clientWidth;
+let timer = function () {
+    let rHours = today.getHours(), rMinutes = today.getMinutes(), rSeconds = today.getSeconds(),
+        timeoutReload = (24 * 3600 * 1000) - (((rHours * 3600) + (rMinutes * 60) + rSeconds) * 1000);
+    setTimeout(() => location.reload(), timeoutReload);
+};
+timer();
+let documentWidth = document.documentElement.clientWidth, time;
 window.onresize = function () {
     if (time)
         clearTimeout(time);
@@ -18,7 +17,6 @@ window.onresize = function () {
         if (documentWidth !== document.documentElement.clientWidth) {
             location.reload();
         }
-
     }, 123);
 };
 
@@ -182,7 +180,6 @@ function changeMainButton() {
     }
 }
 
-// let array = [];
 wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
     for (let i = 0; i < week.length; i++) {
@@ -218,12 +215,9 @@ function newDayDrawIt() {
     }
 } // newDayDrawIt();
 
-
 let testObj;
 let restriction = document.querySelector('.selectTime');
 let form = document.querySelector('form');
-// let array = [];
-// console.log(array);
 mainButton.addEventListener('click', massageDelete);
 
 function massageDelete() {
@@ -232,7 +226,8 @@ function massageDelete() {
 }
 
 mainButton.addEventListener('click', getDataForm);
-let array =[];
+let array = [];
+
 function getDataForm() {
 
     if (buttonSwitchTwo === 0) {
@@ -270,6 +265,7 @@ function getDataForm() {
                 array.length = 0;
             }
             moveAddedDate();
+
             function moveAddedDate() {
                 let allDatesFromWeak = document.querySelectorAll('.week_day');
                 let comparisonDate = addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear();
@@ -290,36 +286,110 @@ function getDataForm() {
         let allDatesFromWeak2 = document.querySelectorAll('.week_day');
         let lastDayInRow = allDatesFromWeak2[8].dataset.storeDates;
         let lastDateInput = lastDayInRow.slice(0, lastDayInRow.indexOf(' '));
-        if( lastDateInput < 10){
-            restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-        } else{
-            restriction.setAttribute("min", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+        let mDateInput = +lastDayInRow.slice(lastDayInRow.indexOf(' '), lastDayInRow.indexOf(' ') + 2);
+        if (lastDateInput < 10) {
+            if (mDateInput < 10) {
+                restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+            } else {
+                restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+            }
+        } else {
+            if (mDateInput < 10) {
+                restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+            } else {
+                restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+            }
         }
-
-        if( lastDateInput < 10){
-            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
-        } else{
-            restriction.setAttribute("max", `${today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
+        if (lastDateInput < 10) {
+            if (mDateInput < 10) {
+                restriction.setAttribute("max", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
+            } else {
+                restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
+            }
+        } else {
+            if (mDateInput < 10) {
+                restriction.setAttribute("max", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
+            } else {
+                restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
+            }
         }
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
     }
 }
-console.log( JSON.stringify(today.getFullYear()  + '-0' + (today.getMonth() + 1) + '-0' + today.getDate() + 'T' + '00:00'));
-// mainButton.addEventListener('click', moveAddedDate);
 
+let combination = [];
+
+function openWindow() {
+    restriction.focus();
+    let allDatesFromWeak2 = document.querySelectorAll('.week_day');
+    let lastDayInRow = allDatesFromWeak2[8].dataset.storeDates;
+    let lastDateInput = lastDayInRow.slice(0, lastDayInRow.indexOf(' '));
+    let mDateInput = +lastDayInRow.slice(lastDayInRow.indexOf(' '), lastDayInRow.indexOf(' ') + 2);
+    if (lastDateInput < 10) {
+        if (mDateInput < 10) {
+            restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+        } else {
+            restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+        }
+    } else {
+        if (mDateInput < 10) {
+            restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+        } else {
+            restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+        }
+    }
+    if (lastDateInput < 10) {
+        if (mDateInput < 10) {
+            restriction.setAttribute("max", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
+        } else {
+            restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + lastDateInput + 'T' + '23:59'}`);
+        }
+    } else {
+        if (mDateInput < 10) {
+            restriction.setAttribute("max", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
+        } else {
+            restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
+        }
+    }
+    // document.querySelector('form input[name=newTime]').value = '';
+    // document.querySelector('form input[name=heading]').value = '';
+    // document.querySelector('form textarea[name=desc]').value = '';
+}
 
 document.addEventListener('keydown', function (event) {
+
+    if (event.code === 'ControlLeft') {
+        combination.push(event.code);
+    }
     if (event.code === 'Enter') {
+        combination.push(event.code);
+
         openAddNew();
         changeMainButton();
         massageDelete();
-        getDataForm();
-        // moveAddedDate(); добавить замыкание, для обращения к getDataForm()  функции
+        if (combination.length > 2) {
+            combination.length = 0;
+        } else if (combination[0] === 'ControlLeft' && combination[1] === 'Enter') {
+            getDataForm();
+        } else {
+            openWindow();
+        }
+
+    }
+    console.log(combination);
+});
+document.addEventListener('keyup', function (event) {
+    if (event.code === 'Enter' || event.code === 'ControlLeft') {
+        combination.length = 0;
     }
 });
-
+// openAddNew();
+// changeMainButton();
+// massageDelete();
+// getDataForm();
+// moveAddedDate(); добавить замыкание, для обращения к getDataForm()  функции
 function drawRemainder(inside, box) {
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
