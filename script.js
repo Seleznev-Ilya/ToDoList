@@ -217,7 +217,7 @@ function newDayDrawIt() {
 
 let testObj;
 let restriction = document.querySelector('.selectTime');
- // restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + (today.getHours() + 2) + ':00'}`);
+
 let form = document.querySelector('form');
 mainButton.addEventListener('click', massageDelete);
 
@@ -291,15 +291,15 @@ function getDataForm() {
         if (lastDateInput < 10) {
             if (mDateInput < 10) {
                 restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            } else {
+             } else {
                 restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            }
+             }
         } else {
             if (mDateInput < 10) {
                 restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            } else {
+             } else {
                 restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            }
+             }
         }
         if (lastDateInput < 10) {
             if (mDateInput < 10) {
@@ -332,14 +332,18 @@ function openWindow() {
     if (lastDateInput < 10) {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '00:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '00:00'}`);
         }
     } else {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '00:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '00:00'}`);
         }
     }
     if (lastDateInput < 10) {
