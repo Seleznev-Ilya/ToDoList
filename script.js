@@ -104,12 +104,10 @@ function moveRelevantDate() {
     }
     let arrayMove = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
     listReminder.innerHTML = '';
-    // massageDelete();
     for (let key in arrayMove) {
         drawRemainder(arrayMove[key], key);
     }
 }
-
 
 wrapperDate.addEventListener('click', (event) => {
     let otherDay = event.target;
@@ -193,8 +191,7 @@ wrapperDate.addEventListener('click', (event) => {
                     drawRemainder(arrayWeek[key], key);
                 }
             } else {
-                listReminder.innerHTML = '';
-                // добавлять надпись, что открывается в начале пустого документа, но это не первоочередно
+                listReminder.innerHTML = ''; // добавлять надпись, что открывается в начале пустого документа, но это не первоочередно
             }
         }
     }
@@ -203,21 +200,8 @@ wrapperDate.addEventListener('click', (event) => {
 function deletLocal() {
     localStorage.removeItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()));
 }; // deletLocal();
-
-function newDayDrawIt() {
-    if (localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())) !== null) {
-        array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
-        listReminder.innerHTML = '';
-        massageDelete();
-        for (let key in array) {
-            drawRemainder(array[key], key);
-        }
-    }
-} // newDayDrawIt();
-
 let testObj;
 let restriction = document.querySelector('.selectTime');
-
 let form = document.querySelector('form');
 mainButton.addEventListener('click', massageDelete);
 
@@ -230,7 +214,6 @@ mainButton.addEventListener('click', getDataForm);
 let array = [];
 
 function getDataForm() {
-
     if (buttonSwitchTwo === 0) {
         function Reminder(dateEnd, heading, description) {
             this.dane = false;
@@ -241,25 +224,19 @@ function getDataForm() {
         }
 
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
-
         if (!form.children[0].value == '' && !form.children[3].value == '') {
             listReminder.innerHTML = '';
             let addReminder = new Date(JSON.parse(testObj.dateEnd));
             if (localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())) !== null) {
-                let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' +
-                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
+                let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
                 arrayDateFrom.push(testObj);
-                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
-                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
-                    addReminder.getFullYear()), JSON.stringify(arrayDateFrom));
+                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(arrayDateFrom));
                 for (let key in arrayDateFrom) {
                     drawRemainder(arrayDateFrom[key], key);
                 }
             } else {
                 array.push(testObj);
-                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' +
-                    addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' +
-                    addReminder.getFullYear()), JSON.stringify(array));
+                localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(array));
                 for (let key in array) {
                     drawRemainder(array[key], key);
                 }
@@ -291,18 +268,18 @@ function getDataForm() {
         if (lastDateInput < 10) {
             if (mDateInput < 10) {
                 restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-                restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
+                restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '12:00'}`);
             } else {
                 restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-                restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
+                restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '12:00'}`);
             }
         } else {
             if (mDateInput < 10) {
                 restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-                restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
+                restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '12:00'}`);
             } else {
                 restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-                restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
+                restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '12:00'}`);
             }
         }
         if (lastDateInput < 10) {
@@ -318,7 +295,6 @@ function getDataForm() {
                 restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
             }
         }
-
         document.querySelector('form input[name=newTime]').value = '';
         document.querySelector('form input[name=heading]').value = '';
         document.querySelector('form textarea[name=desc]').value = '';
@@ -336,18 +312,18 @@ function openWindow() {
     if (lastDateInput < 10) {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '12:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T'  + '12:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + (today.getDate()) + 'T' + '12:00'}`);
         }
     } else {
         if (mDateInput < 10) {
             restriction.setAttribute("min", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '12:00'}`);
         } else {
             restriction.setAttribute("min", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '00:00'}`);
-            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T'  + '12:00'}`);
+            restriction.setAttribute("value", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate()) + 'T' + '12:00'}`);
         }
     }
     if (lastDateInput < 10) {
@@ -363,20 +339,17 @@ function openWindow() {
             restriction.setAttribute("max", `${today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + lastDateInput + 'T' + '23:59'}`);
         }
     }
-
-    // document.querySelector('form input[name=newTime]').value = '';
-    // document.querySelector('form input[name=heading]').value = '';
-    // document.querySelector('form textarea[name=desc]').value = '';
 }
 
 document.addEventListener('keydown', function (event) {
-
     if (event.code === 'ControlLeft') {
         combination.push(event.code);
     }
+    if (event.code === 'Escape') {
+        moveRelevantDate();
+    }
     if (event.code === 'Enter') {
         combination.push(event.code);
-
         openAddNew();
         changeMainButton();
         massageDelete();
@@ -387,20 +360,14 @@ document.addEventListener('keydown', function (event) {
         } else {
             openWindow();
         }
-
     }
-    console.log(combination);
 });
 document.addEventListener('keyup', function (event) {
     if (event.code === 'Enter' || event.code === 'ControlLeft') {
         combination.length = 0;
     }
 });
-// openAddNew();
-// changeMainButton();
-// massageDelete();
-// getDataForm();
-// moveAddedDate(); добавить замыкание, для обращения к getDataForm()  функции
+
 function drawRemainder(inside, box) {
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
@@ -497,9 +464,7 @@ function changeCheckbox(dates) {
     } else {
         array2[indexInput].dane = false;
     }
-    // нужно вставлять дату, от которой было нажатие - так как переводит на отрисовку сегодняшнего дня
     localStorage.setItem(JSON.stringify(dates.getDate() + ' ' + dates.getMonth() + ' ' + dates.getDay() + ' ' + dates.getFullYear()), JSON.stringify(array2));
-
     listReminder.innerHTML = '';
     for (let check in array2) {
         drawRemainder(array2[check], check);
