@@ -369,8 +369,11 @@ document.addEventListener('keyup', function (event) {
 });
 
 function drawRemainder(inside, box) {
+
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
+    reminder.dataset.indexCard = box;
+    reminder.dataset.dataForCard = inside.dateEnd;
     if (document.documentElement.clientWidth <= 414) {
         listReminder.style.width = document.documentElement.clientWidth * .75 + 'px';
     } else {
@@ -430,6 +433,22 @@ function drawRemainder(inside, box) {
     timerImg1.classList.add('timerImg1');
     reminderTimeTo.append(timerImg1);
 
+    let reminderDeleteButton = document.createElement('div');
+    reminderDeleteButton.classList.add('delete');
+    reminderItemData.append(reminderDeleteButton);
+
+    let deleteImg = document.createElement('div');
+    deleteImg.classList.add('deleteImg');
+
+    if (inside.dane === true) {
+        inputImg.checked = true;
+        deleteImg.style.backgroundImage = "url('image/deleteAct.png')";
+    } else {
+        inputImg.checked = false;
+        deleteImg.style.backgroundImage = "url('image/delete.png')";
+    }
+    reminderDeleteButton.append(deleteImg);
+
     let timerTime = document.createElement('span');
     timerTime.classList.add('timerTime');
     if (new Date(JSON.parse(inside.dateEnd)).getMinutes() < 10) {
@@ -452,9 +471,11 @@ function drawRemainder(inside, box) {
 let indexInput, dataLable;
 listReminder.addEventListener('click', (e) => {
     let lookingForInput = e.target;
-    indexInput = lookingForInput.parentNode.children[0].className;
-    dataLable = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
-    changeCheckbox(dataLable);
+    if(lookingForInput.parentNode.parentNode.parentNode.className === 'reminder' && lookingForInput.parentNode.className  === 'reminderCheck'){
+        indexInput = lookingForInput.parentNode.children[0].className;
+        dataLable = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
+        changeCheckbox(dataLable);
+    }
 });
 
 function changeCheckbox(dates) {
@@ -470,6 +491,17 @@ function changeCheckbox(dates) {
         drawRemainder(array2[check], check);
     }
 }
+
+listReminder.addEventListener('click', (c) => {
+    let clickOnCross = c.target;
+
+    if(clickOnCross.className === 'deleteImg'){
+        if(clickOnCross.parentNode.parentNode.parentNode.className === 'reminder'){
+            console.log(clickOnCross.parentNode.parentNode.parentNode.dataset.dataForCard);
+            console.log(clickOnCross.parentNode.parentNode.parentNode.dataset.indexCard);
+        }
+    }
+});
 
 
 

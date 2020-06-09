@@ -27,6 +27,7 @@
     width: auto;
     height: 100%;
     overflow: hidden;
+    /*-ms-overflow-style: none;*/
     background: white;
     border-top-left-radius: 77px;
     position: relative;
@@ -36,12 +37,16 @@
     display: flex;
     justify-content: flex-end;
 }
+/*.main__list_container::-webkit-scrollbar { width: 0; }
+при создании новых возможностей прокрутки.
+*/
 
 .list_reminder {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 20px;
+    transition: 1s;
 }
 
 .reminderRelevant {
@@ -50,12 +55,12 @@
 }
 
 .reminder {
-    box-shadow: 0 3px 11px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 6px 14px 14px -1px rgba(0, 0, 0, 0.4), 0 0 7px 0 rgba(0, 0, 0, 0.3);
     border-radius: 10pt;
     height: 130px;
     border: 3px solid rgba(0, 0, 0, 0);
-    margin-bottom: 20px;
-    transform: translateX(-4%);
+    margin-bottom: 26px;
+    transform: translateX(-1.5%);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -102,18 +107,27 @@
     font-size: 12pt;
 }
 
-.reminderCheck, .reminderTimeTo {
+.reminderCheck {
     width: 100%;
-    height: 50%;
+    height: 45%;
 }
 
 .reminderTimeTo {
     width: 100%;
-    height: 50%;
+    height: 20%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     line-height: 62px;
     align-items: center;
+    padding: 2px;
+}
+.delete{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    vertical-align: center;
     padding: 2px;
 }
 
@@ -122,6 +136,8 @@ input[type=checkbox] {
 }
 
 .labelImg {
+    cursor: pointer;
+    background-position: 50% 50%;
     display: block;
     height: 58px;
     width: 100%;
@@ -129,7 +145,15 @@ input[type=checkbox] {
     background-size: contain;
     cursor: pointer;
 }
-
+.deleteImg{
+    background-position: 50% 50%;
+    display: block;
+    height: 100%;
+    width: 28px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
 
 .timerImg1 {
     display: block;
@@ -145,6 +169,7 @@ input[type=checkbox] {
     display: inline;
     font-size: .7em;
     margin-top: 2px;
+    font-weight: 600;
 }
 
 .main__button_text {
@@ -193,7 +218,7 @@ input[type=checkbox] {
     border-radius: 25px;
     text-align: center;
     vertical-align: center;
-    box-shadow: -6px 17px 17px rgba(0, 0, 0, .4)
+    box-shadow: 14px 17px 17px rgba(0, 0, 0, .4)
 }
 
 .emptyMassage:after {
@@ -464,7 +489,7 @@ input:required {
     padding: 9px;
     border-radius: 25px;
     text-align: center;
-    box-shadow: -9px 10px 9px rgba(0, 0, 0,.4);
+    box-shadow: 14px 10px 9px rgba(0, 0, 0,.4);
 }
 .validity0:after{
     position: absolute;

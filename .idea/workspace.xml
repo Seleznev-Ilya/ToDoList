@@ -4,6 +4,7 @@
     <list default="true" id="5266a3b7-6fd2-4c11-8e68-6050e56a2907" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +93,10 @@
       <workItem from="1588774804006" duration="99000" />
       <workItem from="1589566342679" duration="1267000" />
       <workItem from="1589890243049" duration="22745000" />
-      <workItem from="1589962845223" duration="3896000" />
+      <workItem from="1589962845223" duration="12021000" />
+      <workItem from="1591190342120" duration="4498000" />
+      <workItem from="1591441393972" duration="145000" />
+      <workItem from="1591706881923" duration="11055000" />
     </task>
     <servers />
   </component>
@@ -112,9 +116,9 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="425" y="198" key="run.anything.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1586589855112" />
-    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1588773657867">
+    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1591708036975">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1588773657867" />
+    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1591708036975" />
   </component>
 </project>
