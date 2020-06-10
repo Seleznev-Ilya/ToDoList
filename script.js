@@ -468,7 +468,7 @@ function drawRemainder(inside, box) {
 // let indexInput, dataLable;
 listReminder.addEventListener('click', (e) => {
     let lookingForInput = e.target;
-    if(lookingForInput.parentNode.parentNode.parentNode.className === 'reminder' && lookingForInput.parentNode.className  === 'reminderCheck'){
+    if (lookingForInput.parentNode.parentNode.parentNode.className === 'reminder' && lookingForInput.parentNode.className === 'reminderCheck') {
         let indexInput = lookingForInput.parentNode.children[0].className;
         let dataLabel = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
         changeCheckbox(dataLabel, indexInput);
@@ -491,8 +491,8 @@ function changeCheckbox(dates, indexInput) {
 
 listReminder.addEventListener('click', (c) => {
     let clickOnCross = c.target;
-    if(clickOnCross.className === 'deleteImg'){
-        if(clickOnCross.parentNode.parentNode.parentNode.className === 'reminder'){
+    if (clickOnCross.className === 'deleteImg') {
+        if (clickOnCross.parentNode.parentNode.parentNode.className === 'reminder') {
             let variableCardData = new Date(clickOnCross.parentNode.parentNode.parentNode.dataset.dataForCard);
             let variableCardIndex = clickOnCross.parentNode.parentNode.parentNode.dataset.indexCard;
             confirmCheckboxThenDelete(variableCardData, variableCardIndex);
@@ -503,7 +503,7 @@ listReminder.addEventListener('click', (c) => {
 function confirmCheckboxThenDelete(date, index) {
     let arrayCard = JSON.parse(localStorage.getItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear())));
     if (arrayCard[index].dane === true) {
-        arrayCard.splice( index, 1);
+        arrayCard.splice(index, 1);
     }
     localStorage.setItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear()), JSON.stringify(arrayCard));
     listReminder.innerHTML = '';
