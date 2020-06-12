@@ -107,6 +107,7 @@ function moveRelevantDate() {
     for (let key in arrayMove) {
         drawRemainder(arrayMove[key], key);
     }
+    showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
 }
 
 wrapperDate.addEventListener('click', (event) => {
@@ -116,8 +117,10 @@ wrapperDate.addEventListener('click', (event) => {
             let targetContainer = document.getElementsByClassName(`week_day${i}`)[0].parentNode.parentNode;
             if (document.documentElement.clientWidth <= 414) {
                 targetContainer.style.left = -(document.documentElement.clientWidth / 3) * (i - 1) + 'px';
+                showRelevantCard(document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates);
             } else {
                 targetContainer.style.left = -(348 / 3) * (i - 1) + 'px';
+                showRelevantCard(document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates);
             }
         }
     }
@@ -227,16 +230,25 @@ function getDataForm() {
             if (localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())) !== null) {
                 let arrayDateFrom = JSON.parse(localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())));
                 arrayDateFrom.push(testObj);
+                sortArray(arrayDateFrom);
+                let cardDate = new Date(JSON.parse(arrayDateFrom[0].dateEnd));
                 localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(arrayDateFrom));
                 for (let key in arrayDateFrom) {
                     drawRemainder(arrayDateFrom[key], key);
                 }
+                showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+
             } else {
                 array.push(testObj);
+                sortArray(array);
+                let cardDate = new Date(JSON.parse(array[0].dateEnd));
+
                 localStorage.setItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear()), JSON.stringify(array));
                 for (let key in array) {
                     drawRemainder(array[key], key);
                 }
+                showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+
                 array.length = 0;
             }
             moveAddedDate();
@@ -364,6 +376,24 @@ document.addEventListener('keyup', function (event) {
         combination.length = 0;
     }
 });
+listReminder.addEventListener('click', (e) => {
+    let lookingForInput = e.target;
+    if (lookingForInput.parentNode.parentNode.parentNode.className === 'reminder' && lookingForInput.parentNode.className === 'reminderCheck') {
+        let indexInput = lookingForInput.parentNode.children[0].className;
+        let dataLabel = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
+        changeCheckbox(dataLabel, indexInput);
+    }
+});
+listReminder.addEventListener('click', (c) => {
+    let clickOnCross = c.target;
+    if (clickOnCross.className === 'deleteImg') {
+        if (clickOnCross.parentNode.parentNode.parentNode.className === 'reminder') {
+            let variableCardData = new Date(clickOnCross.parentNode.parentNode.parentNode.dataset.dataForCard);
+            let variableCardIndex = clickOnCross.parentNode.parentNode.parentNode.dataset.indexCard;
+            confirmCheckboxThenDelete(variableCardData, variableCardIndex);
+        }
+    }
+});
 
 function drawRemainder(inside, box) {
 
@@ -465,16 +495,6 @@ function drawRemainder(inside, box) {
     listReminder.append(reminder);
 }
 
-// let indexInput, dataLable;
-listReminder.addEventListener('click', (e) => {
-    let lookingForInput = e.target;
-    if (lookingForInput.parentNode.parentNode.parentNode.className === 'reminder' && lookingForInput.parentNode.className === 'reminderCheck') {
-        let indexInput = lookingForInput.parentNode.children[0].className;
-        let dataLabel = new Date(JSON.parse(lookingForInput.parentNode.children[1].dataset.dateLable));
-        changeCheckbox(dataLabel, indexInput);
-    }
-});
-
 function changeCheckbox(dates, indexInput) {
     let array2 = JSON.parse(localStorage.getItem(JSON.stringify(dates.getDate() + ' ' + dates.getMonth() + ' ' + dates.getDay() + ' ' + dates.getFullYear())));
     if (array2[indexInput].dane === false) {
@@ -489,33 +509,76 @@ function changeCheckbox(dates, indexInput) {
     }
 }
 
-listReminder.addEventListener('click', (c) => {
-    let clickOnCross = c.target;
-    if (clickOnCross.className === 'deleteImg') {
-        if (clickOnCross.parentNode.parentNode.parentNode.className === 'reminder') {
-            let variableCardData = new Date(clickOnCross.parentNode.parentNode.parentNode.dataset.dataForCard);
-            let variableCardIndex = clickOnCross.parentNode.parentNode.parentNode.dataset.indexCard;
-            confirmCheckboxThenDelete(variableCardData, variableCardIndex);
-        }
-    }
-});
-
 function confirmCheckboxThenDelete(date, index) {
     let arrayCard = JSON.parse(localStorage.getItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear())));
+    let cardDate;
     if (arrayCard[index].dane === true) {
-        arrayCard.splice(index, 1);
+        cardDate = new Date(JSON.parse(arrayCard[index].dateEnd));
+        arrayCard.splice(index, 1 );
     }
+
     localStorage.setItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear()), JSON.stringify(arrayCard));
     listReminder.innerHTML = '';
     for (let checkKey in arrayCard) {
         drawRemainder(arrayCard[checkKey], checkKey);
     }
+    showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+
 }
 
+function showRelevantCard(d) {
+    // if (listReminder.children.length !== 0 && listReminder.children.length !== 1){
+    //     console.log( listReminder.children[0].dataset.dataForCard);
+    //     console.log( new Date(listReminder.children[0].dataset.dataForCard).getDate());
+    // }
+    let array = JSON.parse(localStorage.getItem(JSON.stringify(d)));
+    let list = document.querySelector('.list_reminder');
+    console.log(d);
+    // console.log(new Date(JSON.parse(array[0].date))); /*c ключа документа который вызвали - день*/
+    // console.log(new Date(list.children[0].dataset.dataForCard)); /*с первой карточки*/
 
+    if (array !== null && array.length >= 1) {
+        let day = new Date(JSON.parse(array[0].date));
+        if (today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
+            checkOutList();
+        } else {
+            list.style.top = 20 + 'px';
+        }
+    }
 
+    function checkOutList() {
 
+        for (let key in array) {
+            let variableDate = new Date(JSON.parse(array[key].dateEnd));
+            if (today < variableDate) {
+                console.log("hey:", key);
+                // console.log( array[key]);
+                catchRelevantCard(key);
+                break;
+            }
+        }
 
+    }
+
+    function catchRelevantCard(index) {
+        console.log(list);
+        if (index > 0) {
+            list.style.top = -151 * (index - 1) + 'px';
+        } else {
+            list.style.top = 20 + 'px';
+        }
+    }
+}
+
+showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()); /*добавить это в кнопки назад к актуальрному*/
+
+function sortArray(arr) {
+    console.log(arr);
+    arr.sort((a, b) => {
+        console.log(JSON.parse(a.dateEnd));
+        return new Date(JSON.parse(a.dateEnd)) - new Date(JSON.parse(b.dateEnd));
+    });
+}
 
 
 

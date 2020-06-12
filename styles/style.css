@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 20px;
+    top: -151px;
     transition: 1s;
 }
 
@@ -137,7 +137,7 @@ input[type=checkbox] {
 
 .labelImg {
     cursor: pointer;
-    background-position: 35% 50%;
+    background-position: 34% 50%;
     display: block;
     height: 58px;
     width: 100%;
@@ -146,7 +146,7 @@ input[type=checkbox] {
     cursor: pointer;
 }
 .deleteImg{
-    background-position: 50% 50%;
+    background-position: 50% 99%;
     display: block;
     height: 100%;
     width: 28px;
