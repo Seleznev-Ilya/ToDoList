@@ -555,6 +555,8 @@ function showRelevantCard(d) {
                 // console.log( array[key]);
                 catchRelevantCard(key);
                 break;
+            } else {
+                list.style.top = 20 + 'px';
             }
         }
 
