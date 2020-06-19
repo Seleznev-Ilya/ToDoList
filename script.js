@@ -9,6 +9,34 @@ let timer = function () {
     setTimeout(() => location.reload(), timeoutReload);
 };
 timer();
+
+function timerRelevant() {
+    let test = new Date("2020-06-11T22:00:00") - new Date("2020-06-11T21:59:57");
+
+    let timerId = setInterval(() => {
+        test -= 1000;
+        let testSec, testMin, h;
+
+        testSec = (test / 1000) % 60;
+        testMin = Math.floor(test / 60000) % 60;
+        h = (Math.floor(test / 60000) - testMin) / 60;
+
+        if (h < 10) h = "0" + h;
+        if (testMin < 10) testMin = "0" + testMin;
+        if (testSec < 10) testSec = "0" + testSec;
+
+        let timer = `${h}:${testMin}:${testSec}`;
+
+        if (test <= 0) {
+            clearInterval(timerId);
+        }
+        console.log(timer);
+    }, 1000);
+}
+
+timerRelevant();
+
+
 let documentWidth = document.documentElement.clientWidth, time;
 window.onresize = function () {
     if (time)
@@ -407,6 +435,22 @@ function drawRemainder(inside, box) {
         listReminder.style.width = 348 * .75 + 'px';
     }
 
+    let whitCircle = document.createElement('div');
+    whitCircle.classList.add('whitCircle');
+    reminder.append(whitCircle);
+
+    let textInsideCircle = document.createElement('p');
+    textInsideCircle.classList.add('relevant_task');
+    textInsideCircle.innerText = 'Next.';
+    // textInsideCircle.innerText = 'Gone.';
+    // textInsideCircle.innerText = 'Done.';
+    // textInsideCircle.innerText = '14:00';
+    whitCircle.append(textInsideCircle);
+
+    let mainListLine = document.createElement('p');
+    mainListLine.classList.add('main__list_line');
+    reminder.append(mainListLine);
+
     let reminderItemText = document.createElement('div');
     reminderItemText.classList.add('reminderItemText');
     reminder.append(reminderItemText);
@@ -514,7 +558,7 @@ function confirmCheckboxThenDelete(date, index) {
     let cardDate;
     if (arrayCard[index].dane === true) {
         cardDate = new Date(JSON.parse(arrayCard[index].dateEnd));
-        arrayCard.splice(index, 1 );
+        arrayCard.splice(index, 1);
     }
 
     localStorage.setItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear()), JSON.stringify(arrayCard));
@@ -527,19 +571,14 @@ function confirmCheckboxThenDelete(date, index) {
 }
 
 function showRelevantCard(d) {
-    // if (listReminder.children.length !== 0 && listReminder.children.length !== 1){
-    //     console.log( listReminder.children[0].dataset.dataForCard);
-    //     console.log( new Date(listReminder.children[0].dataset.dataForCard).getDate());
-    // }
+
     let array = JSON.parse(localStorage.getItem(JSON.stringify(d)));
     let list = document.querySelector('.list_reminder');
-    console.log(d);
-    // console.log(new Date(JSON.parse(array[0].date))); /*c ключа документа который вызвали - день*/
-    // console.log(new Date(list.children[0].dataset.dataForCard)); /*с первой карточки*/
 
-    if (array !== null && array.length >= 1) {
+
+    if (array !== null && array.length > 0) {
         let day = new Date(JSON.parse(array[0].date));
-        if (today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
+        if (new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getDay() + ' ' + new Date().getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
             checkOutList();
         } else {
             list.style.top = 20 + 'px';
@@ -550,11 +589,13 @@ function showRelevantCard(d) {
 
         for (let key in array) {
             let variableDate = new Date(JSON.parse(array[key].dateEnd));
-            if (today < variableDate) {
-                console.log("hey:", key);
-                // console.log( array[key]);
-                catchRelevantCard(key);
-                break;
+            if (today <= variableDate) {
+                if (key > 1) {
+                    catchRelevantCard(key);
+                    break;
+                } else {
+                    list.style.top = 20 + 'px';
+                }
             } else {
                 list.style.top = 20 + 'px';
             }
@@ -563,21 +604,15 @@ function showRelevantCard(d) {
     }
 
     function catchRelevantCard(index) {
-        console.log(list);
-        if (index > 0) {
-            list.style.top = -151 * (index - 1) + 'px';
-        } else {
-            list.style.top = 20 + 'px';
-        }
+        list.style.top = (-160 * (index - 1)) + 20 + 'px';
     }
+
 }
 
 showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()); /*добавить это в кнопки назад к актуальрному*/
 
 function sortArray(arr) {
-    console.log(arr);
     arr.sort((a, b) => {
-        console.log(JSON.parse(a.dateEnd));
         return new Date(JSON.parse(a.dateEnd)) - new Date(JSON.parse(b.dateEnd));
     });
 }

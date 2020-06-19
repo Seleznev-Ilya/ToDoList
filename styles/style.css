@@ -1,5 +1,37 @@
 @import "main.css";
 
+.main__list_line {
+    display: block;
+    position: absolute;
+    left: -19%;
+    top: 0;
+    height: 150vh;
+    transform: translateY(-50px);
+    width: 6px;
+    background-color: lightgrey;
+    z-index: 1;
+}
+.whitCircle{
+    position: absolute;
+    left: -19%;
+    transform: translateX(-44%);
+    top: calc(50% - 55px/2);
+    height: auto;
+    width: auto;
+    padding: 0 6px 0;
+    box-shadow: 0 0 2px 5px rgb(255, 255, 255);
+    border-radius: 50%;
+    background-color: white;
+    border: 6px solid lightgrey ;
+    text-align: center;
+    vertical-align: center;
+    line-height: 1.5;
+    z-index: 12;
+}
+.relevant_task{
+    font-size: .7em;
+}
+
 .container__header {
     width: auto;
     height: 99.9%;
@@ -37,6 +69,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 /*.main__list_container::-webkit-scrollbar { width: 0; }
 при создании новых возможностей прокрутки.
 */
@@ -46,7 +79,9 @@
     flex-direction: column;
     position: absolute;
     top: 20px;
-    transition: 1s;
+    transition: .8s;
+    padding: 0 0 0 5px;
+
 }
 
 .reminderRelevant {
@@ -55,16 +90,23 @@
 }
 
 .reminder {
+    z-index: 10;
+    position: relative;
     box-shadow: 6px 14px 14px -1px rgba(0, 0, 0, 0.4), 0 0 7px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 10pt;
+    border-radius: 7pt;
     height: 130px;
-    border: 3px solid rgba(0, 0, 0, 0);
-    margin-bottom: 26px;
+    /*border: 3px solid rgba(0, 0, 0, 0);*/
+    margin-bottom: 30px;
     transform: translateX(-1.5%);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 0 0 0 3px;
     background-color: white;
+}
+
+.reminder:nth-last-child(1){
+    margin-bottom: 0;
 }
 
 .emptyBox__wrapper {
@@ -121,11 +163,12 @@
     align-items: center;
     padding: 2px;
 }
-.delete{
+
+.delete {
     width: 100%;
     height: 30%;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
     vertical-align: center;
     padding: 2px;
@@ -145,7 +188,8 @@ input[type=checkbox] {
     background-size: contain;
     cursor: pointer;
 }
-.deleteImg{
+
+.deleteImg {
     background-position: 50% 99%;
     display: block;
     height: 100%;
@@ -174,7 +218,7 @@ input[type=checkbox] {
 
 .main__button_text {
     /*font-weight: bold;*/
-    transition: .666s ease;
+    transition: .7s ease;
     opacity: 1;
     font-size: 14px;
     margin: 0;
@@ -187,6 +231,7 @@ input[type=checkbox] {
 }
 
 .main__button {
+    z-index: 100;
     text-align: center;
     line-height: 45px;
     transition: .7s ease;
@@ -489,9 +534,10 @@ input:required {
     padding: 9px;
     border-radius: 25px;
     text-align: center;
-    box-shadow: 14px 10px 9px rgba(0, 0, 0,.4);
+    box-shadow: 14px 10px 9px rgba(0, 0, 0, .4);
 }
-.validity0:after{
+
+.validity0:after {
     position: absolute;
     top: 20px;
     left: 30px;
@@ -662,6 +708,19 @@ input:required {
 }
 
 @media (max-width: 414px) {
+    .main__list_line {
+
+        width: 5px;
+
+    }
+    .whitCircle{
+
+        border: 5px solid lightgrey ;
+
+    }
+    .relevant_task{
+        font-size: .6em;
+    }
 
     .main__list_container {
         transition: .5s ease;
@@ -686,7 +745,21 @@ input:required {
 }
 
 @media (max-width: 324px) {
+    .main__list_line {
+
+        width: 4px;
+
+    }
+    .whitCircle{
+
+        border: 4px solid lightgrey ;
+
+    }
+    .relevant_task{
+        font-size: .5em;
+    }
     .timerImg1 {
+
         display: block;
         height: 12px;
         width: 12px;

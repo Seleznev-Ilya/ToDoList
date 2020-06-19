@@ -4,6 +4,7 @@
     <list default="true" id="5266a3b7-6fd2-4c11-8e68-6050e56a2907" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +46,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -98,7 +99,9 @@
       <workItem from="1591706881923" duration="20239000" />
       <workItem from="1591816043613" duration="4699000" />
       <workItem from="1591896013452" duration="4594000" />
-      <workItem from="1591945331328" duration="11286000" />
+      <workItem from="1591945331328" duration="11872000" />
+      <workItem from="1592492085187" duration="538000" />
+      <workItem from="1592570633634" duration="29182000" />
     </task>
     <servers />
   </component>
@@ -106,55 +109,38 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="277" y="75" key="SettingsEditor" timestamp="1588532409486">
+    <state x="361" y="91" key="#Inspections" timestamp="1592575296866">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="361" y="91" key="#Inspections/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1592575296866" />
+    <state x="-1049" y="141" key="SettingsEditor" timestamp="1592492599474">
+      <screen x="-1280" y="52" width="1280" height="1024" />
+    </state>
+    <state x="-1049" y="141" key="SettingsEditor/0.0.1536.864/-1280.52.1280.1024@-1280.52.1280.1024" timestamp="1592492599474" />
+    <state x="277" y="75" key="SettingsEditor/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1592492561596" />
     <state x="277" y="75" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1588532409486" />
     <state x="578" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586073439966">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="578" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1586073439966" />
-    <state x="425" y="198" key="run.anything.popup" timestamp="1586589855112">
+    <state x="425" y="198" key="run.anything.popup" timestamp="1592572174974">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="425" y="198" key="run.anything.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1586589855112" />
-    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1591708036975">
+    <state x="425" y="198" key="run.anything.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1592572174974" />
+    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1592604768313">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="431" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1280.52.1280.1024@0.0.1536.864" timestamp="1591708036975" />
+    <state x="431" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1592604768313" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/script.js</url>
-          <line>515</line>
+          <line>12</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/script.js</url>
-          <line>524</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/script.js</url>
-          <line>513</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/script.js</url>
-          <line>231</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/script.js</url>
-          <line>241</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
