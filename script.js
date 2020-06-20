@@ -1,8 +1,8 @@
 const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon'],
     wrapperDate = document.querySelector('.date__wrapper'), containerDate = document.querySelector('.date__container'),
     buttonTodayL = document.querySelector('.date_left_today'),
-    buttonTodayR = document.querySelector('.date_right_today'),
-    today = new Date();
+    buttonTodayR = document.querySelector('.date_right_today');
+let today = new Date();
 let timer = function () {
     let rHours = today.getHours(), rMinutes = today.getMinutes(), rSeconds = today.getSeconds(),
         timeoutReload = (24 * 3600 * 1000) - (((rHours * 3600) + (rMinutes * 60) + rSeconds) * 1000);
@@ -10,31 +10,12 @@ let timer = function () {
 };
 timer();
 
-function timerRelevant() {
-    let test = new Date("2020-06-11T22:00:00") - new Date("2020-06-11T21:59:57");
-
-    let timerId = setInterval(() => {
-        test -= 1000;
-        let testSec, testMin, h;
-
-        testSec = (test / 1000) % 60;
-        testMin = Math.floor(test / 60000) % 60;
-        h = (Math.floor(test / 60000) - testMin) / 60;
-
-        if (h < 10) h = "0" + h;
-        if (testMin < 10) testMin = "0" + testMin;
-        if (testSec < 10) testSec = "0" + testSec;
-
-        let timer = `${h}:${testMin}:${testSec}`;
-
-        if (test <= 0) {
-            clearInterval(timerId);
-        }
-        console.log(timer);
-    }, 1000);
+function getNewDate() {
+    today = new Date();
+    setTimeout(getNewDate, 1000);
 }
 
-timerRelevant();
+getNewDate();
 
 
 let documentWidth = document.documentElement.clientWidth, time;
@@ -136,6 +117,7 @@ function moveRelevantDate() {
         drawRemainder(arrayMove[key], key);
     }
     showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
+    stylingText();
 }
 
 wrapperDate.addEventListener('click', (event) => {
@@ -146,15 +128,20 @@ wrapperDate.addEventListener('click', (event) => {
             if (document.documentElement.clientWidth <= 414) {
                 targetContainer.style.left = -(document.documentElement.clientWidth / 3) * (i - 1) + 'px';
                 showRelevantCard(document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates);
-            } else {
+                stylingText();
+
+             } else {
                 targetContainer.style.left = -(348 / 3) * (i - 1) + 'px';
                 showRelevantCard(document.getElementsByClassName(`week_day${i}`)[0].dataset.storeDates);
-            }
+                stylingText();
+             }
         }
     }
 });
 buttonTodayL.addEventListener('click', moveRelevantDate);
+buttonTodayL.addEventListener('click', stylingText);
 buttonTodayR.addEventListener('click', moveRelevantDate);
+buttonTodayR.addEventListener('click', stylingText);
 let mainButton = document.querySelector('.main__button'), mainList = document.querySelector('.main__list_container'),
     listReminder = document.querySelector('.list_reminder');
 mainButton.addEventListener('click', openAddNew);
@@ -221,6 +208,8 @@ wrapperDate.addEventListener('click', (event) => {
                 for (let key in arrayWeek) {
                     drawRemainder(arrayWeek[key], key);
                 }
+                showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
+                stylingText();
             } else {
                 listReminder.innerHTML = ''; // добавлять надпись, что открывается в начале пустого документа, но это не первоочередно
             }
@@ -265,6 +254,8 @@ function getDataForm() {
                     drawRemainder(arrayDateFrom[key], key);
                 }
                 showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+                stylingText();
+
 
             } else {
                 array.push(testObj);
@@ -276,6 +267,8 @@ function getDataForm() {
                     drawRemainder(array[key], key);
                 }
                 showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+                stylingText();
+
 
                 array.length = 0;
             }
@@ -424,7 +417,6 @@ listReminder.addEventListener('click', (c) => {
 });
 
 function drawRemainder(inside, box) {
-
     let reminder = document.createElement('div');
     reminder.classList.add('reminder');
     reminder.dataset.indexCard = box;
@@ -441,10 +433,7 @@ function drawRemainder(inside, box) {
 
     let textInsideCircle = document.createElement('p');
     textInsideCircle.classList.add('relevant_task');
-    textInsideCircle.innerText = 'Next.';
-    // textInsideCircle.innerText = 'Gone.';
-    // textInsideCircle.innerText = 'Done.';
-    // textInsideCircle.innerText = '14:00';
+    textInsideCircle.innerText = "Next.";
     whitCircle.append(textInsideCircle);
 
     let mainListLine = document.createElement('p');
@@ -551,9 +540,15 @@ function changeCheckbox(dates, indexInput) {
     for (let check in array2) {
         drawRemainder(array2[check], check);
     }
+    showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
+    stylingText();
+
 }
 
+let endCounter = true;
+
 function confirmCheckboxThenDelete(date, index) {
+
     let arrayCard = JSON.parse(localStorage.getItem(JSON.stringify(date.getDate() + ' ' + date.getMonth() + ' ' + date.getDay() + ' ' + date.getFullYear())));
     let cardDate;
     if (arrayCard[index].dane === true) {
@@ -567,15 +562,15 @@ function confirmCheckboxThenDelete(date, index) {
         drawRemainder(arrayCard[checkKey], checkKey);
     }
     showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
+    stylingText();
 
 }
 
 function showRelevantCard(d) {
-
     let array = JSON.parse(localStorage.getItem(JSON.stringify(d)));
     let list = document.querySelector('.list_reminder');
-
-
+    stylingText();
+    // checkOutList();
     if (array !== null && array.length > 0) {
         let day = new Date(JSON.parse(array[0].date));
         if (new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getDay() + ' ' + new Date().getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
@@ -586,12 +581,14 @@ function showRelevantCard(d) {
     }
 
     function checkOutList() {
-
         for (let key in array) {
+
             let variableDate = new Date(JSON.parse(array[key].dateEnd));
+
             if (today <= variableDate) {
                 if (key > 1) {
                     catchRelevantCard(key);
+                    timeOutRelevantTask(key, array.length, array, list);
                     break;
                 } else {
                     list.style.top = 20 + 'px';
@@ -600,14 +597,32 @@ function showRelevantCard(d) {
                 list.style.top = 20 + 'px';
             }
         }
-
     }
 
     function catchRelevantCard(index) {
         list.style.top = (-160 * (index - 1)) + 20 + 'px';
     }
-
 }
+
+function stylingText() {
+    let array = JSON.parse(localStorage.getItem(JSON.stringify(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear())));
+    let list = document.querySelector('.list_reminder');
+
+    for (let key in array) {
+
+        let variableDate = new Date(JSON.parse(array[key].dateEnd));
+
+        if ( variableDate < today ) {
+            // list.children[key].children[0].children[0]
+            list.children[key].children[0].children[0].innerHTML = 'Gone.';
+            list.children[key].children[0].children[0].style.color = 'tomato';
+        } else {
+            list.children[key].children[0].children[0].innerHTML = 'Next.';
+            list.children[key].children[0].children[0].style.color =  "rgba(3, 201, 169, 1)";
+        }
+    }
+}
+stylingText();
 
 showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()); /*добавить это в кнопки назад к актуальрному*/
 
@@ -615,6 +630,45 @@ function sortArray(arr) {
     arr.sort((a, b) => {
         return new Date(JSON.parse(a.dateEnd)) - new Date(JSON.parse(b.dateEnd));
     });
+}
+
+// TineOutTask
+function timeOutRelevantTask(index, length, arr, list) {
+    let circleTimer = list.children[+index];
+    let relData = new Date(JSON.parse(arr[index].dateEnd));
+    let sendTimOutNumber = Date.parse(relData) - Date.parse(today);
+    timerRelevant(sendTimOutNumber, circleTimer );
+    stylingText();
+}
+
+// Timer
+function timerRelevant(a, circleTimer) {
+    let dateStamp = a;
+    let timerId = setInterval(() => {
+        dateStamp -= 1000;
+        let testSec, testMin, h;
+        testSec = (dateStamp / 1000) % 60;
+        testMin = Math.floor(dateStamp / 60000) % 60;
+        h = (Math.floor(dateStamp / 60000) - testMin) / 60;
+        if (h < 10) h = "0" + h;
+        if (testMin < 10) testMin = "0" + testMin;
+        if (testSec < 10) testSec = "0" + testSec;
+        let timer;
+        if (dateStamp < 3600000) {
+            timer = `${testMin}:${testSec}`;
+        } else {
+            timer = `${h}:${testMin}`;
+        }
+        if (dateStamp <= 0) {
+            endCounter = true;
+            let end = new Date();
+            showRelevantCard(end.getDate() + ' ' + end.getMonth() + ' ' + end.getDay() + ' ' + end.getFullYear());
+            stylingText();
+            clearInterval(timerId);
+        }
+        circleTimer.children[0].children[0].innerHTML = timer;
+        circleTimer.children[0].style.boxShadow = "inset 0 0 7px rgba(3, 201, 169, 0.3);";
+    }, 1000);
 }
 
 
