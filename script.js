@@ -659,12 +659,12 @@ function timerRelevant(a, circleTimer) {
         if (dateStamp <= 0) {
             let end = new Date();
             showRelevantCard(end.getDate() + ' ' + end.getMonth() + ' ' + end.getDay() + ' ' + end.getFullYear());
-            stylingText();
             circleTimer.children[0].children[0].innerHTML = 'Gone';
+            stylingText();
             clearInterval(timerId);
         }
         circleTimer.children[0].children[0].innerHTML = timer;
-        circleTimer.children[0].style.boxShadow = "0 0 2px 5px rgb(255, 255, 255), inset 0 0 26px 0 rgba(3, 201, 169, 0.25)";
+        circleTimer.children[0].style.boxShadow = "0 0 2px 5px rgb(255, 255, 255), inset 0 0 26px 0 rgba(255,99,71, 0.25)";
     }, 1000);
 }
 
