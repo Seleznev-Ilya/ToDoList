@@ -542,10 +542,7 @@ function changeCheckbox(dates, indexInput) {
     }
     showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
     stylingText();
-
 }
-
-let endCounter = true;
 
 function confirmCheckboxThenDelete(date, index) {
 
@@ -570,7 +567,7 @@ function showRelevantCard(d) {
     let array = JSON.parse(localStorage.getItem(JSON.stringify(d)));
     let list = document.querySelector('.list_reminder');
     stylingText();
-    // checkOutList();
+    checkOutList();
     if (array !== null && array.length > 0) {
         let day = new Date(JSON.parse(array[0].date));
         if (new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getDay() + ' ' + new Date().getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
@@ -586,7 +583,7 @@ function showRelevantCard(d) {
             let variableDate = new Date(JSON.parse(array[key].dateEnd));
 
             if (today <= variableDate) {
-                if (key > 1) {
+                if (key > 0) {
                     catchRelevantCard(key);
                     timeOutRelevantTask(key, array.length, array, list);
                     break;
@@ -614,10 +611,10 @@ function stylingText() {
 
         if ( variableDate < today ) {
             // list.children[key].children[0].children[0]
-            list.children[key].children[0].children[0].innerHTML = 'Gone.';
+            list.children[key].children[0].children[0].innerHTML = 'Gone';
             list.children[key].children[0].children[0].style.color = 'tomato';
-        } else {
-            list.children[key].children[0].children[0].innerHTML = 'Next.';
+        } else if(variableDate > today){
+            list.children[key].children[0].children[0].innerHTML = 'Next';
             list.children[key].children[0].children[0].style.color =  "rgba(3, 201, 169, 1)";
         }
     }
@@ -660,14 +657,14 @@ function timerRelevant(a, circleTimer) {
             timer = `${h}:${testMin}`;
         }
         if (dateStamp <= 0) {
-            endCounter = true;
             let end = new Date();
             showRelevantCard(end.getDate() + ' ' + end.getMonth() + ' ' + end.getDay() + ' ' + end.getFullYear());
             stylingText();
+            circleTimer.children[0].children[0].innerHTML = 'Gone';
             clearInterval(timerId);
         }
         circleTimer.children[0].children[0].innerHTML = timer;
-        circleTimer.children[0].style.boxShadow = "inset 0 0 7px rgba(3, 201, 169, 0.3);";
+        circleTimer.children[0].style.boxShadow = "0 0 2px 5px rgb(255, 255, 255), inset 0 0 26px 0 rgba(3, 201, 169, 0.25)";
     }, 1000);
 }
 
