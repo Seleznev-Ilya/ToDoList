@@ -5,7 +5,7 @@
     position: absolute;
     left: -19%;
     top: 0;
-    height: 150vh;
+    height: 77vh;
     transform: translateY(-50px);
     width: 6px;
     background-color: lightgrey;
@@ -60,8 +60,8 @@
     box-shadow: inset 11px 5px 14px -4px rgba(3, 201, 169, .1), -5px 0 10px rgba(0, 0, 0, 0.3);
     width: auto;
     height: 100%;
-    overflow: hidden;
-    /*-ms-overflow-style: none;*/
+    overflow: scroll;
+    -ms-overflow-style: none;
     background: white;
     border-top-left-radius: 77px;
     position: relative;
@@ -72,9 +72,7 @@
     justify-content: flex-end;
 }
 
-/*.main__list_container::-webkit-scrollbar { width: 0; }
-при создании новых возможностей прокрутки.
-*/
+.main__list_container::-webkit-scrollbar { width: 0; }
 
 .list_reminder {
     display: flex;

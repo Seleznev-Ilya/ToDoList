@@ -241,7 +241,7 @@ function getDataForm() {
         }
 
         testObj = new Reminder(form.children[0].value, form.children[3].value, form.children[5].value);
-        if (!form.children[0].value == '' && !form.children[3].value == '') {
+        if (form.children[0].value !== '' && form.children[3].value !== '') {
             listReminder.innerHTML = '';
             let addReminder = new Date(JSON.parse(testObj.dateEnd));
             if (localStorage.getItem(JSON.stringify(addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear())) !== null) {
@@ -254,9 +254,7 @@ function getDataForm() {
                     drawRemainder(arrayDateFrom[key], key);
                 }
                 showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
-                stylingText();
-
-
+                // stylingText();
             } else {
                 array.push(testObj);
                 sortArray(array);
@@ -276,6 +274,7 @@ function getDataForm() {
 
             function moveAddedDate() {
                 let allDatesFromWeak = document.querySelectorAll('.week_day');
+                console.log(allDatesFromWeak );
                 let comparisonDate = addReminder.getDate() + ' ' + addReminder.getMonth() + ' ' + addReminder.getDay() + ' ' + addReminder.getFullYear();
                 for (let day of allDatesFromWeak) {
                     if (day.dataset.storeDates === comparisonDate) {
@@ -541,7 +540,7 @@ function changeCheckbox(dates, indexInput) {
         drawRemainder(array2[check], check);
     }
     showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear());
-    stylingText();
+    // stylingText();
 }
 
 function confirmCheckboxThenDelete(date, index) {
@@ -559,19 +558,20 @@ function confirmCheckboxThenDelete(date, index) {
         drawRemainder(arrayCard[checkKey], checkKey);
     }
     showRelevantCard(cardDate.getDate() + ' ' + cardDate.getMonth() + ' ' + cardDate.getDay() + ' ' + cardDate.getFullYear());
-    stylingText();
+    // stylingText();
 
 }
 
 function showRelevantCard(d) {
     let array = JSON.parse(localStorage.getItem(JSON.stringify(d)));
     let list = document.querySelector('.list_reminder');
-    stylingText();
-    checkOutList();
+    // stylingText();
+    // checkOutList();
     if (array !== null && array.length > 0) {
         let day = new Date(JSON.parse(array[0].date));
         if (new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getDay() + ' ' + new Date().getFullYear() === day.getDate() + ' ' + day.getMonth() + ' ' + day.getDay() + ' ' + day.getFullYear()) {
             checkOutList();
+            stylingText();
         } else {
             list.style.top = 20 + 'px';
         }
@@ -609,17 +609,20 @@ function stylingText() {
 
         let variableDate = new Date(JSON.parse(array[key].dateEnd));
 
-        if ( variableDate < today ) {
+
+        if ( variableDate.getTime() < today.getTime()  /* new Date(list.children[0].dataset.dataForCard).getTime()*/) {
             // list.children[key].children[0].children[0]
+            // console.log( variableDate.getTime() < today.getTime());
             list.children[key].children[0].children[0].innerHTML = 'Gone';
             list.children[key].children[0].children[0].style.color = 'tomato';
-        } else if(variableDate > today){
+        } else if(variableDate.getTime() > today.getTime()){
+            // console.log( variableDate.getTime() < today.getTime());
             list.children[key].children[0].children[0].innerHTML = 'Next';
             list.children[key].children[0].children[0].style.color =  "rgba(3, 201, 169, 1)";
         }
     }
 }
-stylingText();
+// stylingText();
 
 showRelevantCard(today.getDate() + ' ' + today.getMonth() + ' ' + today.getDay() + ' ' + today.getFullYear()); /*добавить это в кнопки назад к актуальрному*/
 
@@ -659,11 +662,12 @@ function timerRelevant(a, circleTimer) {
         if (dateStamp <= 0) {
             let end = new Date();
             showRelevantCard(end.getDate() + ' ' + end.getMonth() + ' ' + end.getDay() + ' ' + end.getFullYear());
-            circleTimer.children[0].children[0].innerHTML = 'Gone';
+            // circleTimer.children[0].children[0].innerHTML = 'Gone';
             stylingText();
             clearInterval(timerId);
         }
         circleTimer.children[0].children[0].innerHTML = timer;
+
         circleTimer.children[0].style.boxShadow = "0 0 2px 5px rgb(255, 255, 255), inset 0 0 26px 0 rgba(255,99,71, 0.25)";
     }, 1000);
 }
